@@ -1,0 +1,108 @@
+html{
+  box-sizing: border-box;
+}
+
+*, * ::before, *::after{
+  box-sizing: inherit;
+}
+
+/* Use modern sans-serif font */
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  height: 100%;
+}
+
+main{
+height: 100vh;
+}
+  
+  /* Style the headings with a soft gradient */
+
+  
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  nav ul {
+    display: flex;
+    gap: 20px;
+  }
+  
+  nav li {
+    list-style: none;
+    font-size: 18px;
+  }
+  
+  section.posts {
+    margin-bottom: 40px;
+  }
+  
+  section.posts h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  section.posts .post {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  section.posts .post p {
+    margin: 0;
+    font-size: 16px;
+    flex-grow: 1;
+  }
+  
+  section.posts .post button {
+    border: none;
+    background-color: #f44336;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  section.posts .post button:hover {
+    background-color: #ff6659;
+  }
+  
+  section.new-post {
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+  
+  section.new-post h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  section.new-post textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  section.new-post button {
+    border: none;
+    background-color: #4caf50;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  section.new-post button:hover {
+    background-color: #5ed25e;
+  }
