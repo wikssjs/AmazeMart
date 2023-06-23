@@ -5,9 +5,9 @@ import Link from 'next/link'
 
 export default function Product() {
     return (
-        <div className={`${styles.productWrapper} col`}>
+        <div className={`${styles.productWrapper} col-1`}>
 
-            <Link href="#">
+            <Link href="/produit/1">
 
                 <div className={styles.product}>
                     <button><i className='bi bi-heart'></i></button>

@@ -1,0 +1,138 @@
+.cartWrapper h1{
+    font-size: 1.4em;
+    font-weight: 600;
+}
+.itemWrapper{
+    background-color: antiquewhite;
+}
+
+.deliveryWrapper{
+    background-color: antiquewhite;
+}
+.deliveryWrapper h2{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.deliveryWrapper span{
+    font-size: 1em;
+    font-weight: lighter;
+}
+.deliveryWrapper .informations{
+    width: 40%;
+}
+
+.deliveryWrapper button{
+    align-items: center;
+    appearance: none;
+    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+    border: 0;
+    border-radius: 6px;
+    box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    height: 48px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 18px;
+}
+
+
+.payment_option form label{
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 50%;
+}
+.payment_option form label input{
+    box-shadow: none;
+    background: none;
+    outline: none;
+}
+.payment_option form label:hover{
+    background-color: #ccc;
+}
+
+.personnal_info{
+    background-color: antiquewhite;
+}
+
+.personnal_info .inputCard{
+        /* width: 100%; */
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 10px;
+        color: #333;
+        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+        resize: none;
+    
+    }
+    .personnal_info input:focus{
+        outline: none;
+        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .lblCoupon{
+        display: flex;
+        flex-direction: column;
+    }
+
+.lblCoupon input {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    color: #333;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    resize: none;
+    border-radius: 0;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+}
+
+.lblCoupon button{
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    color: #333;
+    border: none;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    resize: none;
+    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 0;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.lblCoupon button:hover{
+    background-color: #ff6659;
+    /**put the cursor as a pointer */
+}
+
+.lblCoupon h2{
+    font-size: 1.2em;
+    font-weight: 600;
+    color: gray;
+}

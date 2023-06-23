@@ -32,7 +32,7 @@ export default function Header() {
         <nav className="d-flex gap-5 mx-5">
           <div className={styles.logo}>
             <Image src={logo} alt="site logo" width={50} height="auto" className="" />
-            <span>AmazeMart</span>
+            <Link href="/">AmazeMart</Link>
           </div>
           <div className="d-flex  w-100 justify-content-between">
             <ul className="d-flex gap-5">
@@ -51,7 +51,7 @@ export default function Header() {
               </li>
               <li>
                 <i className="bi bi-cart"></i>
-                <span>Cart</span>
+                <Link href="/cart">Cart</Link>
               </li>
             </ul>
           </div>

@@ -23,12 +23,17 @@
     align-items: center;
 }
 
+.inner_header nav a {
+    text-decoration: none;
+    color: black
+}
+
 
 .logo{
     display: flex;
 }
 
-.logo span{
+.logo a{
 	letter-spacing: 0.0015em;
 	font-size: 1.5em;
 	text-shadow: 0 1px #8da1ff, -1px 0 #c0cbff, -1px 2px #8da1ff, -2px 1px #c0cbff,

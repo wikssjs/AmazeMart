@@ -3,12 +3,13 @@ import '../styles/globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import 'animate.css';
-import {Roboto_Flex,Montserrat,Bitter} from '@next/font/google'
+import {Roboto_Flex,Montserrat,Bitter,Raleway} from '@next/font/google'
 import Layout from '../component/Layout';
 import Scripts from '../component/Scripts';
 
 
-const inter = Bitter({subsets:['latin'],weight:["500"]});
+const bitter = Bitter({subsets:['latin'],weight:["500"]});
+const raleway = Raleway({subsets:['latin']});
 
 
 export default function App({ Component, pageProps }) {
@@ -18,10 +19,10 @@ export default function App({ Component, pageProps }) {
   <style jsx global>
     {`
      header{
-      font-family:${inter.style.fontFamily};
+      font-family:${bitter.style.fontFamily};
      }
-     body{
-      font-family:${inter.style.fontFamily}
+     main{
+      font-family:${raleway.style.fontFamily}
      }
     `}
   </style>

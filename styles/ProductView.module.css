@@ -1,3 +1,8 @@
+.productWrapper{
+      max-width:80rem;
+      min-width: 50rem;
+}
+
 .productWrapper h2 {
     font-size: 1.5em;
 }
@@ -27,7 +32,11 @@
 
 .image{
     background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
 }
+
+
 
 /* CSS */
 .buttons button{
@@ -78,4 +87,78 @@
   .rigthSide h1{
     font-size: 2em;
     font-weight: bold;
+  }
+
+
+
+
+
+  .reviewContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .reviewCard {
+    background-color: #f2f2f2;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .reviewCard:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .reviewTitle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .reviewContent {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+  }
+  
+  .reviewer {
+    margin-top: 15px;
+  }
+  
+  .reviewerName {
+    font-size: 12px;
+    color: #888;
+  }
+  
+  /* Media queries for responsiveness */
+  
+  @media (max-width: 992px) {
+    .reviewCard {
+      margin-bottom: 30px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .reviewCard {
+      flex-basis: 50%;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .reviewCard {
+      flex-basis: 100%;
+    }
+  }
+  
+  
+  
+  
+  @media screen and (max-width: 768px){
+    .image img{
+      width: 100%;
+      height: auto;
+      background-color: rebeccapurple;
+    }
+    
   }
