@@ -36,8 +36,7 @@ export default function Header() {
           </div>
           <div className="d-flex  w-100 justify-content-between">
             <ul className="d-flex gap-5">
-              <li>Categories</li>
-              <li>Deals</li>
+              <li>              <Link href="/categories">Categories</Link></li>
               <li>Wahts New</li>
               <li>Delivery</li>
             </ul>

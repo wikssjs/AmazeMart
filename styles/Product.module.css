@@ -58,14 +58,12 @@
     cursor: pointer;
     display: inline-flex;
     font-family: "JetBrains Mono",monospace;
-    height: 48px;
+    height: 480px;
+    width: 200px;
     justify-content: center;
     line-height: 1;
     list-style: none;
     overflow: hidden;
-    padding-left: 16px;
-    padding-right: 16px;
-    position: relative;
     text-align: left;
     text-decoration: none;
     transition: box-shadow .15s,transform .15s;

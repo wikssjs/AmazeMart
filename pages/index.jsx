@@ -3,8 +3,19 @@ import Image from 'next/image'
 import arrow from '../public/img/arrow.png'
 import headphone from '../public/img/headphone.png'
 import Product from '../component/Product'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
+
+
+  const [homeData, setHomeData] = useState({ products: [] });
+
+  useEffect(() => {
+    fetch('http://localhost:3001/')
+      .then(res => res.json())
+      .then(data => setHomeData(data))
+  }, [])
+  
   return (
     <main className='mx-5 d-flex flex-column justify-content-'>
       <div className={`${styles.imageLayer} container-fluid`}>
@@ -14,27 +25,24 @@ export default function Home() {
             <button>Buy Now</button>
           </div>
           <div className=''>
-            <Image src={headphone} width={375} />
+            <Image src={headphone} width={375} className='d-none d-md-flex' />
 
           </div>
         </div>
       </div>
 
 
-      <div className=''>
-        <h1>Products For you</h1>
+      <div>
+        <h1 className='ml-5 my-3'>Products For you</h1>
 
-      <div className='row gap-3'>
-        <Product/>
-        <Product/>
-        <Product/>
-        <Product/>
-        <Product/>
-        <Product/>
-        <Product/>
-        <Product/>
-      </div>
-       
+        <div className='row gap-4 justify-content-center my-5'>
+          {
+            homeData.products.map((product) => (
+              <Product key={product.id} product={product} />
+            ))
+          }
+        </div>
+
       </div>
     </main >
   )

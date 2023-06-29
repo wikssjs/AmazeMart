@@ -2,35 +2,101 @@ import styles from '../styles/Product.module.css'
 import headphoneImg from '../public/img/headphoneImg.png'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect,useState } from 'react'
 
-export default function Product() {
+export default function Product({ product }) {
+
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:3001/cart')
+            .then(res => res.json())
+            .then(data => setProducts(data.cart))
+    }, [])
+
+
+
+        // Calculate average rating
+        let averageRating = product.average_rating
+
+        if(averageRating === NaN) {
+            averageRating = 0;
+        }
+        // Round the average to the nearest whole number
+        const roundedAverage = Math.round(averageRating) > 0 ? Math.round(averageRating) : 0;
+    
+        // Calculate the number of unfilled stars
+        const unfilledStars = 5 - roundedAverage;
+
+        const addToCart = async () => {
+
+             
+        let pass = true;
+        
+            products.forEach((item) => {
+                if (item.productId === product.id) {
+                    if(item.quantity < product.quantity) {
+                        pass = true;
+                    }
+                    else{
+                        pass = false;
+                    }
+                }
+            });
+
+            if(!pass) {
+                return;
+            }
+
+            let data = {
+                id: product.id,
+                quantity: 1,
+            }
+            let reponse = await fetch('http://localhost:3001/addtocart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
+            })
+
+            let result = await reponse.json();
+            setProducts(result.cart);
+
+        }
+
+
     return (
         <div className={`${styles.productWrapper} col-1`}>
 
-            <Link href="/produit/1">
+            <Link href={`/product/${product.id}`}>
 
                 <div className={styles.product}>
                     <button><i className='bi bi-heart'></i></button>
-                    <Image src={headphoneImg} width={300} />
+                    {/* <Image src={headphoneImg} width={300}/> */}
+                    <Image src={`${product.image}`} alt="" width={300} height="300" />
                 </div>
             </Link>
             <div className='d-flex justify-content-between'>
                 <Link href="#">
-                    <h2>Wireless headphone IPX8</h2>
+                    <h2>{product.name}</h2>
                 </Link>
-                <h3>$89.00</h3>
+                <h3>{product.price}</h3>
             </div>
-            <span>Organix Cotton</span>
-            <div className=''>
-                <i className='bi bi-star'></i>
-                <i className='bi bi-star'></i>
-                <i className='bi bi-star'></i>
-                <i className='bi bi-star'></i>
-                <i className='bi bi-star'></i>
+            <span>{product.category}</span>
+            <div className='text-success py-2 d-flex align-items-center'>
+                <span className='p-1'>{averageRating} </span>
+                {roundedAverage && [...Array(roundedAverage)].map((star, i) => (
+                    <i key={i} className='bi bi-star-fill p-1'></i>
+                ))}
+                {unfilledStars && [...Array(unfilledStars)].map((star, i) => (
+                    <i key={i} className='bi bi-star p-1'></i>
+                ))}
+                <span className='p-1'>  ( {product.review_count} )  </span>
             </div>
 
 
-            <button className={styles.addCart}>Add to cart</button>
+            <button onClick={addToCart} className={styles.addCart}><i class="bi bi-bag-plus"></i></button>
         </div>
     )
 }

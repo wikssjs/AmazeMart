@@ -1,0 +1,19 @@
+.category_card {
+    color: #333;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.category_card:hover {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.category_card .card {
+    transition: all 0.3s ease;
+}
+
+.category_card:hover .card {
+    transform: scale(1.03);
+    box-shadow: 0px 10px 25px rgba(0, 123, 255, 0.15);
+}
