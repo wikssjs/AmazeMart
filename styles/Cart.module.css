@@ -1,188 +1,201 @@
-.cartWrapper h1{
-    font-size: 1.4em;
-    font-weight: 600;
+.cartWrapper h1 {
+  font-size: 1.4em;
+  font-weight: 600;
 }
-.cartLeft{
-    height: 100vh;
+.cartLeft {
+  height: 100vh;
 }
-.itemWrapper{
-    background-color: antiquewhite;
-}
-
-.products{
-    overflow: auto;
-    height: 60%;
+.itemWrapper {
+  background-color: antiquewhite;
 }
 
-.amount{
-    width: 110px;
-    height: 35px;
-    align-items: center;
-    justify-content: center;
-    background-color: antiquewhite;
+.products {
+  overflow: auto;
+  height: 60%;
 }
 
-.amount button{
-    background: none;
-    border: none;
-    font-size: 1.2em;
-}
-.line{
-    color: red;
-    text-decoration: line-through;
-}
-.deliveryWrapper{
-    background-color: antiquewhite;
-}
-.deliveryWrapper h2{
-    font-size: 1.2em;
-    font-weight: bold;
-}
-.deliveryWrapper span{
-    font-size: 1em;
-    font-weight: lighter;
-}
-.deliveryWrapper .informations{
-    width: 40%;
+.amount {
+  width: 110px;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+  background-color: antiquewhite;
 }
 
-.deliveryWrapper button{
-    align-items: center;
-    appearance: none;
-    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
-    border: 0;
-    border-radius: 6px;
-    box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
-    box-sizing: border-box;
-    color: #fff;
-    cursor: pointer;
-    display: inline-flex;
-    height: 48px;
-    justify-content: center;
-    line-height: 1;
-    list-style: none;
-    overflow: hidden;
-    position: relative;
-    text-align: left;
-    text-decoration: none;
-    transition: box-shadow .15s,transform .15s;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    will-change: box-shadow,transform;
-    font-size: 18px;
+.amount button {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+}
+.line {
+  color: red;
+  text-decoration: line-through;
+}
+.deliveryWrapper {
+  background-color: antiquewhite;
+}
+.deliveryWrapper h2 {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.deliveryWrapper span {
+  font-size: 1em;
+  font-weight: lighter;
+}
+.deliveryWrapper .informations {
+  width: 40%;
 }
 
-
-.payment_option .choiceForm label{
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    width: 50%;
-}
-.payment_option .choiceForm label input{
-    box-shadow: none;
-    background: none;
-    outline: none;
-}
-.payment_option .choiceForm label:hover{
-    background-color: #ccc;
-}
-
-.paymentForm button{
-    align-items: center;
-    appearance: none;
-    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
-    border: 0;
-    border-radius: 6px;
-    box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
-    box-sizing: border-box;
-    color: #fff;
-    cursor: pointer;
-    height: 48px;
-    list-style: none;
-    overflow: hidden;
-    text-decoration: none;
-    transition: box-shadow .15s,transform .15s;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    will-change: box-shadow,transform;
-    font-size: 20px;
-    align-self: center;
-    margin-right: 50px;
+.deliveryWrapper button {
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(
+    100% 100% at 100% 0,
+    #5adaff 0,
+    #5468ff 100%
+  );
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow 0.15s, transform 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  font-size: 18px;
 }
 
-.personnal_info{
-    background-color: antiquewhite;
+.payment_option .choiceForm label {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 50%;
+}
+.payment_option .choiceForm label input {
+  box-shadow: none;
+  background: none;
+  outline: none;
+}
+.payment_option .choiceForm label:hover {
+  background-color: #ccc;
 }
 
-.personnal_info .inputCard{
-        /* width: 100%; */
-        padding: 10px;
-        font-size: 16px;
-        border: none;
-        border-radius: 10px;
-        color: #333;
-        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s ease-in-out;
-        resize: none;
-    
-    }
-    .personnal_info input:focus{
-        outline: none;
-        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.5);
-    }
+.paymentForm button {
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(
+    100% 100% at 100% 0,
+    #5adaff 0,
+    #5468ff 100%
+  );
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  height: 48px;
+  list-style: none;
+  overflow: hidden;
+  text-decoration: none;
+  transition: box-shadow 0.15s, transform 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  font-size: 20px;
+  align-self: center;
+  margin-right: 50px;
+}
 
-    .lblCoupon{
-        display: flex;
-        flex-direction: column;
-    }
+.personnal_info {
+  background-color: antiquewhite;
+}
+
+.lblCoupon {
+  display: flex;
+  flex-direction: column;
+}
 
 .lblCoupon input {
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 10px;
-    color: #333;
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease-in-out;
-    resize: none;
-    border-radius: 0;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  color: #333;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+  resize: none;
+  border-radius: 0;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
-.lblCoupon button{
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 10px;
-    color: #333;
-    border: none;
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease-in-out;
-    resize: none;
-    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
-    color: white;
+.lblCoupon button {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 10px;
+  color: #333;
+  border: none;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+  resize: none;
+  background-image: radial-gradient(
+    100% 100% at 100% 0,
+    #5adaff 0,
+    #5468ff 100%
+  );
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.lblCoupon button:hover {
+  background-color: #ff6659;
+  /**put the cursor as a pointer */
+}
+
+.lblCoupon h2 {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: gray;
+}
+.paypal_button {
+    background-color: #ffc439;
+    color: #111;
+    border: 0;
+    border-radius: 5px;
+    padding: 10px 10px;
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    border-radius: 0;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
-.lblCoupon button:hover{
-    background-color: #ff6659;
-    /**put the cursor as a pointer */
-}
-
-.lblCoupon h2{
-    font-size: 1.2em;
-    font-weight: 600;
-    color: gray;
-}
+    align-self: center;
+    margin-right: 50px;
+    margin-top: 20px;
+  }
+  
+  .paypal-button:hover {
+    background-color: #ffaa00;
+  }
+  

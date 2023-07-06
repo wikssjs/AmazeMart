@@ -5,13 +5,14 @@ import { useEffect, useState } from 'react'
 import visa from '../public/img/visa.png'
 import paypal from '../public/img/paypal.png'
 import mastercard from '../public/img/mastercard.png'
+import PaymentForm from '../component/PaymentForm'
 
 export default function Cart() {
     const [selectedOption, setSelectedOption] = useState("");
-    const[coupon, setCoupon] = useState('');
-    const[discount, setDiscount] = useState(0);
-    const[total , setTotal] = useState(0);
-    const[couponMessage, setCouponMessage] = useState('');
+    const [coupon, setCoupon] = useState('');
+    const [discount, setDiscount] = useState(0);
+    const [total, setTotal] = useState(0);
+    const [couponMessage, setCouponMessage] = useState('');
 
 
     const [products, setProducts] = useState([]);
@@ -91,6 +92,8 @@ export default function Cart() {
             .then(data => {
                 setProducts(data.cart)
                 setSubTotal(data.subTotal.subTotal)
+                setTotal(0)
+                setDiscount(0)
 
             })
     };
@@ -102,11 +105,11 @@ export default function Cart() {
 
     const handleCouponChange = (e) => {
         setCoupon(e.target.value);
-        };
+    };
 
     const handleCouponSubmit = async (e) => {
         e.preventDefault();
-        if(!coupon){
+        if (!coupon) {
             setCouponMessage('Please enter a coupon code')
             return;
         }
@@ -121,8 +124,8 @@ export default function Cart() {
                     coupon: coupon,
                 })
         })
-        
-            
+
+
 
         const data = await response.json();
         //if the response is ok, update the state
@@ -166,10 +169,10 @@ export default function Cart() {
                                             <div>
                                                 <h3>{product.price}</h3>
                                                 <div className={`${styles.amount} d-flex gap-3 shadow-lg rounded-5`}>
-                                                    <button data-id={product.id} onClick={decrement}> <i className='bi bi-dash-circle'></i></button>
+                                                    <button data-id={product.productId} onClick={decrement}> <i className='bi bi-dash-circle'></i></button>
                                                     <span>{product.quantity}</span>
                                                     <p>{message}</p>
-                                                    <button data-id={product.id} onClick={increment}><i className='bi bi-plus-circle'></i></button>
+                                                    <button data-id={product.productId} onClick={increment}><i className='bi bi-plus-circle'></i></button>
                                                 </div>                                            </div>
                                         </div>
                                     </div>
@@ -214,17 +217,17 @@ export default function Cart() {
                     <div>
                         <h1>Order Summary</h1>
                         <div>
-                            <h5 className='d-flex gap-3'>SubTotal : <span  className={total ? `${styles.line}` : ""}>$ {subTotal}</span></h5>
+                            <h5 className='d-flex gap-3'>SubTotal : <span className={total ? `${styles.line}` : ""}>$ {subTotal}</span></h5>
                             {
                                 discount ?
-                                <h5  className='d-flex gap-3'>Discount : <span  className='text-success'>$ {discount}</span></h5>
-                                : ""
+                                    <h5 className='d-flex gap-3'>Discount : <span className='text-success'>$ {discount.toFixed(2)}</span></h5>
+                                    : ""
                             }
                             {
-                                
-                                total ? 
-                                <h5  className='d-flex  gap-5'>Total : <span>$ {total || subTotal}</span></h5>
-                                : ""
+
+                                total ?
+                                    <h5 className='d-flex  gap-5'>Total : <span>$ {total || subTotal}</span></h5>
+                                    : ""
 
                             }
                         </div>
@@ -235,9 +238,9 @@ export default function Cart() {
                                 <button type='submit'>Appliquer</button>
 
                             </div>
-                            {   
-                            couponMessage &&
-                            <span className='text-danger'>{couponMessage}</span>
+                            {
+                                couponMessage &&
+                                <span className='text-danger'>{couponMessage}</span>
                             }
                         </form>
                     </div>
@@ -272,48 +275,19 @@ export default function Cart() {
                                 />
                                 Paypal
                             </label>
-                            <label className='d-flex gap-2'>
-                                <input
-                                    type="radio"
-                                    value="Google Pay"
-                                    checked={selectedOption === "Google Pay"}
-                                    onChange={handleChange}
-                                />
-                                Google Pay
-                            </label>
+
                         </form>
                         <div className="d-flex gap-3 align-items-center">
                             <Image src={visa} width={50} />
                             <Image src={paypal} width={70} />
                             <Image src={mastercard} width={50} />
                         </div>
-
-                        <form className={`${styles.paymentForm} d-flex flex-column`}>
-                            <label htmlFor="" className={` d-flex flex-column pr-5`}>
-                                Email *
-                                <input type="text" className={`${styles.inputCard} `} />
-                            </label>
-                            <label htmlFor="" className={`d-flex flex-column pr-5`}>
-                                Card Horder Name *
-                                <input type="text" className={`${styles.inputCard} `} />
-                            </label>
-                            <label htmlFor="" className={`d-flex flex-column pr-5`}>
-                                Card Horder Name *
-                                <input type="text" className={`${styles.inputCard} `} />
-                            </label>
-
-                            <div className='d-flex'>
-                                <label htmlFor="" className={` d-flex flex-column pr-5`}>
-                                    Card Horder Name *
-                                    <input type="text" className={`${styles.inputCard} w-100`} />
-                                </label>
-                                <label htmlFor="" className={` d-flex flex-column pr-5`}>
-                                    Card Horder Name *
-                                    <input type="text" className={`${styles.inputCard} w-100`} />
-                                </label>
-                            </div>
-                            <button type='submit'>Payer <i className='bi bi-lock'></i></button>
-                        </form>
+                        {
+                            selectedOption === "Paypal" ?
+                                <button className={styles.paypal_button}>Pay with PayPal</button>
+                                :
+                                <PaymentForm />
+                        }
                     </div>
                 </div>
             </div>

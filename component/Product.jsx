@@ -67,7 +67,7 @@ export default function Product({ product }) {
 
 
     return (
-        <div className={`${styles.productWrapper} col-1`}>
+        <div className={`${styles.productWrapper} col-1 mt-5`}>
 
             <Link href={`/product/${product.id}`}>
 

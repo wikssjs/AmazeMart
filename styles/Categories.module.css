@@ -17,3 +17,38 @@
     transform: scale(1.03);
     box-shadow: 0px 10px 25px rgba(0, 123, 255, 0.15);
 }
+
+.products h1 {
+    font-size: 40px;
+    text-transform: uppercase;
+    font-family: 'Gambetta', serif;
+    letter-spacing: -3px;
+    transition: 700ms ease;
+    font-variation-settings: "wght" 311;
+    color: #333;
+    outline: none;
+    text-align: center;
+  }
+  
+ .products h1:hover {
+    font-variation-settings: "wght" 582; 
+    letter-spacing: 1px;
+  }
+
+  .products p{
+    font-size: 20px;
+    text-transform: uppercase;
+    font-family: 'Gambetta', serif;
+    letter-spacing: 5px;
+    margin-top: 100px;
+    transition: 700ms ease;
+    font-variation-settings: "wght" 311;
+    color: #333;
+    outline: none;
+    text-align: center;
+  }
+
+    .products p:hover {
+        font-variation-settings: "wght" 582; 
+        letter-spacing: 1px;
+    }
