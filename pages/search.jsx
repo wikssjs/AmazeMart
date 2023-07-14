@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from '../styles/Search.module.css';
 import Product from '../component/Product';
 import { useRouter } from 'next/router';
+import LoadingBar from 'react-top-loading-bar';
 
 export default function SearchResults(){
     const [products, setProducts] = useState([]);
@@ -30,6 +31,7 @@ export default function SearchResults(){
 
   return (
     <div className={`${styles.container} my-5 `}>
+        <LoadingBar color='#f11946' progress={10} height={3} />
       <h1 className={`${styles.title} text-center`}>Search Results</h1>
       <h1 className={`${styles.searchTerm} text-center`}>result for <span className='text-success'>'{search}'</span></h1>
       <div className='row gap-4 justify-content-center my-5'>

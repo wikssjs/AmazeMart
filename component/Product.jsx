@@ -2,11 +2,25 @@ import styles from '../styles/Product.module.css'
 import headphoneImg from '../public/img/headphoneImg.png'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect,useState } from 'react'
+import { useEffect,useState ,useRef} from 'react'
 
 export default function Product({ product }) {
 
     const [products, setProducts] = useState([]);
+    const [imgIndex, setImgIndex] = useState(0);
+    const timerRef = useRef();
+    const images = product.images; 
+
+
+    const startImageRotation = () => {
+        timerRef.current = setInterval(() => {
+            setImgIndex((prevIndex) => (prevIndex + 1) % images.length);
+        }, 2000); // Change image every 2 seconds
+    }
+
+    const stopImageRotation = () => {
+        clearInterval(timerRef.current);
+    }
 
     useEffect(() => {
         fetch('http://localhost:3001/cart')
@@ -67,7 +81,9 @@ export default function Product({ product }) {
 
 
     return (
-        <div className={`${styles.productWrapper} col-1 mt-5`}>
+        <div className={`${styles.productWrapper} col-1 mt-5`}
+        onMouseEnter={startImageRotation}
+        onMouseLeave={stopImageRotation}>
 
             <Link href={`/product/${product.id}`}>
 

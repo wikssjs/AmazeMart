@@ -4,6 +4,7 @@ import arrow from '../public/img/arrow.png'
 import headphone from '../public/img/headphone.png'
 import Product from '../component/Product'
 import { useEffect, useState } from 'react'
+import LoadingBar from 'react-top-loading-bar'
 
 export default function Home() {
 
@@ -18,6 +19,7 @@ export default function Home() {
   
   return (
     <main className='mx-5 d-flex flex-column justify-content-'>
+      <LoadingBar color='#f11946' progress={100} height={3} />
       <div className={`${styles.imageLayer} container-fluid`}>
         <div className='d-flex justify-content-around'>
           <div className={styles.text}>

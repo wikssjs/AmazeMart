@@ -6,7 +6,8 @@ import visa from '../public/img/visa.png'
 import paypal from '../public/img/paypal.png'
 import mastercard from '../public/img/mastercard.png'
 import PaymentForm from '../component/PaymentForm'
-
+import LoadingBar from 'react-top-loading-bar';
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js'
 export default function Cart() {
     const [selectedOption, setSelectedOption] = useState("");
     const [coupon, setCoupon] = useState('');
@@ -145,6 +146,7 @@ export default function Cart() {
 
     return (
         <main >
+      <LoadingBar color='#f11946' progress={100} height={3} />
             <div className={`${styles.cartWrapper} row mx-5 gap-4`}>
                 <div className={`${styles.cartLeft} col-7 justify-content-between`}>
 
@@ -284,7 +286,29 @@ export default function Cart() {
                         </div>
                         {
                             selectedOption === "Paypal" ?
-                                <button className={styles.paypal_button}>Pay with PayPal</button>
+                            <PayPalScriptProvider 
+                            options={{
+                                "client-id": "AeFSn8i_mwvD-7EX3Zpc_8RAruQY06g5qEZbvlFqaNTaHjeLJl6da4pWD_LBCldz3wJ9_2fKulImuK9i",
+
+                            }}>
+                                <PayPalButtons 
+                                createOrder={(data, actions) => {
+                                    return actions.order
+                                        .create({
+                                            purchase_units: [
+                                                {
+                                                    amount: {
+                                                        value: total ,
+                                                    },
+                                                },
+                                            ],
+                                        })
+                                        .then((orderId) => {
+                                            // Your code here after create the order
+                                            return orderId;
+                                        });
+                                }}/>
+                            </PayPalScriptProvider>
                                 :
                                 <PaymentForm />
                         }

@@ -185,7 +185,12 @@
     font-size: 16px;
     color: #555;
   }
-  
+
+
+  .carousel{
+    margin: 0 auto;
+    padding: 0 70px;
+  }
   
   
   

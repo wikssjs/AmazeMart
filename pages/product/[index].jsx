@@ -3,6 +3,10 @@ import headphone from '../../public/img/headphoneImg.png'
 import styles from '../../styles/ProductView.module.css'
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import LoadingBar from 'react-top-loading-bar';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+
 export default function Product() {
 
     const router = useRouter();
@@ -52,23 +56,23 @@ export default function Product() {
     };
 
     const addToCart = async () => {
-        
+
         let pass = true;
-        
+
         products.forEach((item) => {
             if (item.productId === product.id) {
-                alert(item.quantity)
-                if(item.quantity < product.quantity) {
+                if (item.quantity < product.quantity && item.quantity + quantity <= product.quantity) {
+                    //use a popup to tell the user that the product cannot be added to cart
                     pass = true;
                 }
-                else{
+                else {
+                    //use a popup to tell the user that the product has been added to cart
                     pass = false;
-                    alert('You have reached the maximum quantity for this product')
                 }
             }
         });
 
-        if(!pass) {
+        if (!pass) {
             return;
         }
 
@@ -85,11 +89,11 @@ export default function Product() {
             body: JSON.stringify(data),
         })
 
-        let result = await reponse.json();  
+        let result = await reponse.json();
         console.log(result)
         setProducts(result.cart);
 
-       
+
 
     }
     // Calculate average rating
@@ -105,18 +109,29 @@ export default function Product() {
 
     return (
         <main>
+            <LoadingBar color='#f11946' progress={100} height={3} />
             <div className={`${styles.productWrapper}  mx-auto  rounded-5`}>
                 <div className='d-flex  flex-wrap justify-content-between border-bottom border-muted'>
                     <div className={`${styles.image} col-xl-6 shadow-lg`}>
-                        <Image src={headphone} />
-                    </div>
+                        {/* <Image src={headphone} /> */}
+                        <Carousel showArrows className={styles.carousel}>
+                            <div>
+                                <img src="https://i5.walmartimages.com/asr/0a4daa53-2aea-46b4-b5d5-9b04c7a416e9.7bd167d319855b52f0bd56ff7dc2544b.jpeg" />
+                            </div>
+                            <div>
+                                <img src="https://i5.walmartimages.com/asr/0a4daa53-2aea-46b4-b5d5-9b04c7a416e9.7bd167d319855b52f0bd56ff7dc2544b.jpeg" />
+                            </div>
+                            <div>
+                                <img src="https://i5.walmartimages.com/asr/0a4daa53-2aea-46b4-b5d5-9b04c7a416e9.7bd167d319855b52f0bd56ff7dc2544b.jpeg" />
+                            </div>
+                        </Carousel>                    </div>
                     <div className={`${styles.rigthSide} my-4 col-xl-5  d-flex flex-column justify-content-between`}>
                         <div className={styles.text}>
                             <h1>{product.name}</h1>
                             <p className='m-0'>Un casque pour ecouter de la musique</p>
 
                             <div className={`${styles.productRating} text-success`}>
-                                <span className='p-1'>{ averageRating ? averageRating : ""}</span>
+                                <span className='p-1'>{averageRating ? averageRating : ""}</span>
                                 {roundedAverage && [...Array(roundedAverage)].map((star, i) => (
                                     <i key={i} className='bi bi-star-fill p-1'></i>
                                 ))}
@@ -139,8 +154,8 @@ export default function Product() {
                             <div>
                                 {
                                     product.quantity < 20 ? <p>Only {product.quantity} left dont miss it</p>
-                                    :
-                                    <span className='text-success'>In Stock</span>
+                                        :
+                                        <span className='text-success'>In Stock</span>
                                 }
                             </div>
                         </div>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from '../styles/Categories.module.css'
 import Product from '../component/Product';
+import LoadingBar from 'react-top-loading-bar';
 
 
 export default function Categories() {
@@ -51,6 +52,7 @@ export default function Categories() {
             <div className="row">
                 {categories.map((category) => (
                     <div data-category = {category.category} className="col-md-4 mb-4" key={category.id} onClick={showProducts}>
+                        <LoadingBar color='#f11946' progress={100} height={3} />
                         <div href={`/categories/${category}`} className={`${styles.category_card } text-decoration-none`}>
                             <div className="card border-0 shadow-sm">
                                 <div className="card-body text-center">
