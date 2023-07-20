@@ -2,25 +2,13 @@ import styles from '../styles/Product.module.css'
 import headphoneImg from '../public/img/headphoneImg.png'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect,useState ,useRef} from 'react'
+import { useEffect, useState, useRef } from 'react'
+import { decode } from 'jsonwebtoken'
 
-export default function Product({ product }) {
+export default function Product({product,fetchProducts,setFetchProducts}) {
 
     const [products, setProducts] = useState([]);
-    const [imgIndex, setImgIndex] = useState(0);
-    const timerRef = useRef();
-    const images = product.images; 
 
-
-    const startImageRotation = () => {
-        timerRef.current = setInterval(() => {
-            setImgIndex((prevIndex) => (prevIndex + 1) % images.length);
-        }, 2000); // Change image every 2 seconds
-    }
-
-    const stopImageRotation = () => {
-        clearInterval(timerRef.current);
-    }
 
     useEffect(() => {
         fetch('http://localhost:3001/cart')
@@ -30,67 +18,81 @@ export default function Product({ product }) {
 
 
 
-        // Calculate average rating
-        let averageRating = product.average_rating
+    // Calculate average rating
+    let averageRating = product.average_rating
 
-        if(averageRating === NaN) {
-            averageRating = 0;
-        }
-        // Round the average to the nearest whole number
-        const roundedAverage = Math.round(averageRating) > 0 ? Math.round(averageRating) : 0;
-    
-        // Calculate the number of unfilled stars
-        const unfilledStars = 5 - roundedAverage;
+    if (averageRating === NaN) {
+        averageRating = 0;
+    }
+    // Round the average to the nearest whole number
+    const roundedAverage = Math.round(averageRating) > 0 ? Math.round(averageRating) : 0;
 
-        const addToCart = async () => {
+    // Calculate the number of unfilled stars
+    const unfilledStars = 5 - roundedAverage;
 
-             
+    const addToCart = async () => {
+
+
         let pass = true;
-        
-            products.forEach((item) => {
-                if (item.productId === product.id) {
-                    if(item.quantity < product.quantity) {
-                        pass = true;
-                    }
-                    else{
-                        pass = false;
-                    }
+
+        products.forEach((item) => {
+            if (item.productId === product.id) {
+                if (item.quantity < product.quantity) {
+                    pass = true;
                 }
-            });
-
-            if(!pass) {
-                return;
+                else {
+                    pass = false;
+                }
             }
+        });
 
-            let data = {
-                id: product.id,
-                quantity: 1,
-            }
-            let reponse = await fetch('http://localhost:3001/addtocart', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data),
-            })
-
-            let result = await reponse.json();
-            setProducts(result.cart);
-
+        if (!pass) {
+            return;
         }
+
+        let data = {
+            id: product.id,
+            quantity: 1,
+        }
+        let reponse = await fetch('http://localhost:3001/addtocart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'user-id': decode(localStorage.getItem('token')).id,
+            },
+            body: JSON.stringify(data),
+        })
+
+        let result = await reponse.json();
+        setProducts(result.cart);
+
+    }
+
+    const setFavorite = async () => {
+        let data = {
+            productId: product.id,
+        }
+        let reponse = await fetch('http://localhost:3001/product/addtofavorite', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'user-id': decode(localStorage.getItem('token')).id,
+            },
+            body: JSON.stringify(data),
+        })
+
+        setFetchProducts(!fetchProducts);
+    }
 
 
     return (
-        <div className={`${styles.productWrapper} col-1 mt-5`}
-        onMouseEnter={startImageRotation}
-        onMouseLeave={stopImageRotation}>
+        <div className={`${styles.productWrapper} col-1 mt-5`}>
 
             <Link href={`/product/${product.id}`}>
 
                 <div className={styles.product}>
-                    <button><i className='bi bi-heart'></i></button>
-                    {/* <Image src={headphoneImg} width={300}/> */}
-                    <Image src={`${product.image}`} alt="" width={300} height="300" />
+                    <Image src={headphoneImg} width={300} />
+                    {/* <Image src={`${product.image}`} alt="" width={300} height="300" /> */}
                 </div>
             </Link>
             <div className='d-flex justify-content-between'>
@@ -98,6 +100,7 @@ export default function Product({ product }) {
                     <h2>{product.name}</h2>
                 </Link>
                 <h3>{product.price}</h3>
+                <button onClick={setFavorite} className={styles.heartButton}><i className={`${product.product_id ? 'bi bi-heart-fill text-danger':'bi bi-heart'}`}></i></button>
             </div>
             <span>{product.category}</span>
             <div className='text-success py-2 d-flex align-items-center'>

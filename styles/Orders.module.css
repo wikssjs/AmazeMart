@@ -1,0 +1,55 @@
+/* YourStylesheet.module.css */
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #f8f9fa; /* Light gray */
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    border: none;
+    background-color: #ffffff; /* White */
+}
+
+.card_body {
+    padding: 1.5rem;
+}
+
+.card_title {
+    font-weight: 600;
+    color: #111111; /* Black */
+    margin-bottom: 1rem;
+}
+
+.list_group_item {
+    border: none;
+    background-color: #ffffff; /* White */
+}
+
+
+.list_group_item h6 {
+    margin-bottom: 0.5rem;
+    color: #111111; /* Black */
+}
+
+.list_group_item p {
+    margin-bottom: 0.25rem;
+    color: #555555; /* Dark gray */
+}
+
+.mt-3 {
+    margin-top: 1rem;
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .card_body {
+        padding: 1rem;
+    }
+}

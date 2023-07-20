@@ -8,6 +8,10 @@ import mastercard from '../public/img/mastercard.png'
 import PaymentForm from '../component/PaymentForm'
 import LoadingBar from 'react-top-loading-bar';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js'
+import { decode } from 'jsonwebtoken'
+
+
+
 export default function Cart() {
     const [selectedOption, setSelectedOption] = useState("");
     const [coupon, setCoupon] = useState('');
@@ -25,7 +29,8 @@ export default function Cart() {
         fetch(`http://localhost:3001/cart/increment`, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'user-id': decode(localStorage.getItem('token')).id,
             },
             body: JSON.stringify(
                 {
@@ -48,7 +53,8 @@ export default function Cart() {
         let response = await fetch(`http://localhost:3001/cart/decrement`, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'user-id': Number(decode(localStorage.getItem('token')).id),
             },
             body: JSON.stringify(
                 {
@@ -75,7 +81,13 @@ export default function Cart() {
     };
 
     useEffect(() => {
-        fetch('http://localhost:3001/cart')
+        fetch(`http://localhost:3001/cart?token=${localStorage.getItem('token')}`,{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'user-id': decode(localStorage.getItem('token')).id,
+            },
+        })
             .then(res => res.json())
             .then(data => {
 
@@ -88,6 +100,10 @@ export default function Cart() {
     const handleDelete = (id) => {
         fetch(`http://localhost:3001/cart/${id}`, {
             method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'user-id': decode(localStorage.getItem('token')).id,
+            },
         })
             .then(res => res.json())
             .then(data => {

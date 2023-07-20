@@ -1,5 +1,6 @@
 .header {
-  height: 100px;
+  height: 110px;
+  margin: 0;
 }
 
 .top_header {
@@ -28,11 +29,14 @@
   color: black;
 }
 
+.inner_header nav li a:hover {
+  color: #8da1ff;
+}
 .logo {
   display: flex;
 }
 
-.logo a {
+.logo span {
   letter-spacing: 0.0015em;
   font-size: 1.5em;
   text-shadow: 0 1px #8da1ff, -1px 0 #c0cbff, -1px 2px #8da1ff, -2px 1px #c0cbff,
@@ -45,6 +49,11 @@
 .links ul li {
   font-size: 1.3em;
 }
+
+.links ul li:hover {
+  color: #8da1ff;
+}
+
 .seachInput {
   padding: 10px;
   font-size: 1em;

@@ -10,24 +10,24 @@ export default function Categories() {
     const [categories, setCategories] = useState([]);
     const[category, setCategory] = useState('Electronics')
     const [products, setProducts] = useState([]);
+    const[fetchProducts, setFetchProducts] = useState(false)
     useEffect(() => {
         fetch(`http://localhost:3001/categories`)
             .then(res => res.json())
             .then(data => {
-                console.log(data.categories)
                 setCategories(data.categories)
             })
     }, [])
 
     useEffect(() => {
-        fetch(`http://localhost:3001/products?category=Electronics`)
+        fetch(`http://localhost:3001/products?category=${category}`)
         .then(res => res.json())
         .then(data => {
             console.log(data.products)
             setProducts(data.products)
         }
         )
-    }, [])
+    }, [fetchProducts])
 
     const showProducts = (e) => {
         const category = e.currentTarget.dataset.category
@@ -72,7 +72,7 @@ export default function Categories() {
                     products.length ===0 ? <p className='text-center '>No Products for this Category</p>
                     :
                     products.map((product) => (
-                        <Product key={product.id} product={product} />
+                        <Product setFetchProducts={setFetchProducts} fetchProducts={fetchProducts} key={product.id} product={product} />
                     ))
                     
                 }

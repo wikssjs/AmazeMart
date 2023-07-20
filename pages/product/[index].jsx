@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import LoadingBar from 'react-top-loading-bar';
 import { Carousel } from 'react-responsive-carousel';
+import { decode } from 'jsonwebtoken';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 
 export default function Product() {
@@ -84,7 +85,8 @@ export default function Product() {
         let reponse = await fetch('http://localhost:3001/addtocart', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'user-id': Number(decode(localStorage.getItem('token')).id),
             },
             body: JSON.stringify(data),
         })
@@ -110,7 +112,7 @@ export default function Product() {
     return (
         <main>
             <LoadingBar color='#f11946' progress={100} height={3} />
-            <div className={`${styles.productWrapper}  mx-auto  rounded-5`}>
+            <div className={`${styles.productWrapper}  mx-auto  rounded-5 mt-5`}>
                 <div className='d-flex  flex-wrap justify-content-between border-bottom border-muted'>
                     <div className={`${styles.image} col-xl-6 shadow-lg`}>
                         {/* <Image src={headphone} /> */}
@@ -134,10 +136,10 @@ export default function Product() {
                                 <span className='p-1'>{averageRating ? averageRating : ""}</span>
                                 {roundedAverage && [...Array(roundedAverage)].map((star, i) => (
                                     <i key={i} className='bi bi-star-fill p-1'></i>
-                                ))}
+                                    ))}
                                 {unfilledStars && [...Array(unfilledStars)].map((star, i) => (
                                     <i key={i} className='bi bi-star p-1'></i>
-                                ))}
+                                    ))}
                                 <span className='p-1'>  ( {reviews.length} )  </span>
                             </div>
                         </div>
@@ -154,8 +156,8 @@ export default function Product() {
                             <div>
                                 {
                                     product.quantity < 20 ? <p>Only {product.quantity} left dont miss it</p>
-                                        :
-                                        <span className='text-success'>In Stock</span>
+                                    :
+                                    <span className='text-success'>In Stock</span>
                                 }
                             </div>
                         </div>
