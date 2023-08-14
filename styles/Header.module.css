@@ -22,6 +22,8 @@
 .inner_header nav {
   font-weight: 400;
   align-items: center;
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
 }
 
 .inner_header nav a {
@@ -33,7 +35,7 @@
   color: #8da1ff;
 }
 .logo {
-  display: flex;
+  display: flex;;
 }
 
 .logo span {
@@ -46,8 +48,12 @@
   text-align: center;
 }
 
+.links{
+  width: 100%;
+}
+
 .links ul li {
-  font-size: 1.3em;
+  font-size: 1.1em;
 }
 
 .links ul li:hover {
@@ -103,4 +109,93 @@
 .searchWrapper button:focus {
   outline: none;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Hamburger menu styles */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 1;
+  display: none;
+}
+
+.hamburger .bar {
+  display: block;
+  width: 30px;
+  height: 2px;
+  background-color: #000;
+  transition: transform 0.2s ease-in-out;
+}
+
+
+
+
+@media screen and (max-width:1400px) {
+  .hamburger {
+    display: flex;
+  }
+  .hamburger.open .bar:nth-child(1) {
+    transform: translateY(9px) rotate(-45deg);
+  }
+  
+  .hamburger.open .bar:nth-child(2) {
+    opacity: 0;}
+  
+  .hamburger.open .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(45deg);
+  }
+
+  .links{
+    position: fixed;
+    top: 14.5%;
+    flex-direction: column;
+    z-index: 2;
+    width: 100%;
+    left: 0%;
+    display: none;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    position: absolute;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;    border-radius: 20px;
+  }
+
+  .links.open{
+    display: flex;
+    transform: translateY(0%);
+  }
+
+  .left_menu{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .right_menu{
+    flex-direction: column;
+    }
+
+    .inner_header nav{
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      padding: 2rem;
+    }
+/* 
+  .right_menu{
+    background-color: yellow;
+    flex-direction: column;
+    top: 15%;
+  }
+
+  .left_menu{
+    background-color: red;
+    flex-direction: column;
+  } */
 }

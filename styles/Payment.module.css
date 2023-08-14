@@ -1,44 +1,81 @@
-
 .container {
-    max-width: 90%;
-    margin: 0 auto;
-    padding: 3rem;
     background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    font-family: Arial, sans-serif;
+    max-width: 90%;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     border-radius: 20px;
-}
-
-.card {
-    border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border: none;
-    background: #fff;
-}
-
-.card_body {
-    padding: 1.5rem;
-}
-
-.card_title {
-    font-weight: 600;
-    color: #3f3f3f;
-    margin-bottom: 1rem;
+    padding: 3rem;
+    margin: 0 auto;
+  }
+  
+  .card {
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card_info {
+    background: linear-gradient(to right, #003366, #000044);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: #ffffff;
+  }
+  
+  .card_logo {
+    float: right;
+  }
+  
+  .card_number {
+    font-size: 18px;
+    letter-spacing: 3px;
+    font-family: monospace;
+    margin-top: 20px;
+  }
+  
+  .card_valid,
+  .card_holder {
+    font-size: 12px;
+  }
+  
+  .valid_text,
+  .holder_title {
+    opacity: 0.7;
+  }
+  
+  .valid_date,
+  .holder_name {
+    font-weight: bold;
+  }
+  
+  .card_form {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .form_label {
-    color: #606060;
+  font-weight: 600;
+  color: #333333;
+  font-size: 14px;
+  margin-bottom: 5px;
 }
 
 .form_control {
-    border: 1px solid #ced4da;
-    border-radius: 10px;
-    padding: 0.5rem 0.75rem;
-    transition: border-color 0.2s ease-in-out;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 5px;
+  transition: border-color 0.3s ease;
 }
 
 .form_control:focus {
-    border-color: #198754;
-    box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 .btn_primary {
@@ -60,8 +97,6 @@
     overflow: hidden;
     padding-left: 16px;
     padding-right: 16px;
-    position: relative;
-    text-align: left;
     text-decoration: none;
     transition: box-shadow .15s,transform .15s;
     user-select: none;
@@ -70,19 +105,15 @@
     white-space: nowrap;
     will-change: box-shadow,transform;
     font-size: 18px;
+    align-self: center;
 }
+
 
 .btn_primary:hover {
     box-shadow: #4caf50 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
 }
 
-.btn_primary:focus{
+.btn_primary:focus {
     box-shadow: #3c4fe0 0 3px 7px inset;
     transform: translateY(2px);
-}
-
-@media (max-width: 992px) {
-    .container {
-        padding: 2rem;
-    }
 }

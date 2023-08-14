@@ -1,6 +1,6 @@
 
 .productWrapper{
-    width: fit-content;
+    width: 310px;
   }
 
   .productWrapper a {
@@ -16,12 +16,23 @@
     color: #5468ff;
   }
   
-  .product{
+  .product {
     background-color: antiquewhite;
-    width: fit-content;
+    width: 300px;
     position: relative;
     border-radius: 10px;
+    padding: 20px;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   }
+  
+  .product:hover {
+    transform: translateY(-5px);
+    box-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  
 
   .product img{
     transform: scale(0.8);
@@ -80,8 +91,9 @@
     will-change: box-shadow,transform;
     font-size: 18px;
   }
-  .addCart:focus {
-    box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+  .addCart:hover {
+    box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+    transform: translateY(-2px);
   }
 
   .addCart:focus {

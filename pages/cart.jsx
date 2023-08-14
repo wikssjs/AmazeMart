@@ -2,17 +2,19 @@ import Image from 'next/image'
 import headphone from '../public/img/headphoneImg.png'
 import styles from '../styles/Cart.module.css'
 import { useEffect, useState } from 'react'
-import visa from '../public/img/visa.png'
+import visa from '../public/img/visa-card.png'
 import paypal from '../public/img/paypal.png'
 import mastercard from '../public/img/mastercard.png'
 import PaymentForm from '../component/PaymentForm'
 import LoadingBar from 'react-top-loading-bar';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js'
 import { decode } from 'jsonwebtoken'
+import AdressForm from '../component/AdressForm'
 
 
 
 export default function Cart() {
+
     const [selectedOption, setSelectedOption] = useState("");
     const [coupon, setCoupon] = useState('');
     const [discount, setDiscount] = useState(0);
@@ -22,7 +24,35 @@ export default function Cart() {
 
     const [products, setProducts] = useState([]);
     const [subTotal, setSubTotal] = useState(0);
+    const [userAddress, setUserAddress] = useState(null);
     const [message, setMessage] = useState([]);
+    const [cartHasnoItems, setCartHasItems] = useState(false);
+    const [formDetails, setFormDetails] = useState({
+        name: '',
+        address: '',
+        city: '',
+        zip: '',
+        email: ''
+    });
+
+
+    useEffect(() => {
+        fetch(`http://localhost:3001/cart?token=${localStorage.getItem('token')}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'user-id': decode(localStorage.getItem('token')).id,
+            },
+        })
+            .then(res => res.json())
+            .then(data => {
+                setProducts(data.cart)
+                setSubTotal(data.subTotal.subTotal)
+            }
+            )
+        setCartHasItems(products.length !== 0);
+    }, [products.length])
+
 
     const increment = (event) => {
         const productId = Number(event.currentTarget.dataset.id);
@@ -80,22 +110,6 @@ export default function Cart() {
         setMessage(data.message)
     };
 
-    useEffect(() => {
-        fetch(`http://localhost:3001/cart?token=${localStorage.getItem('token')}`,{
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'user-id': decode(localStorage.getItem('token')).id,
-            },
-        })
-            .then(res => res.json())
-            .then(data => {
-
-                setProducts(data.cart)
-                setSubTotal(data.subTotal.subTotal)
-            }
-            )
-    }, [])
 
     const handleDelete = (id) => {
         fetch(`http://localhost:3001/cart/${id}`, {
@@ -134,7 +148,8 @@ export default function Cart() {
         const response = await fetch(`http://localhost:3001/cart/coupon`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'user-id': Number(decode(localStorage.getItem('token')).id),
             },
             body: JSON.stringify(
                 {
@@ -147,6 +162,7 @@ export default function Cart() {
         const data = await response.json();
         //if the response is ok, update the state
         if (response.ok) {
+            alert(data.message)
             setDiscount(data.discount)
             setTotal(data.total)
             setCouponMessage('')
@@ -159,18 +175,17 @@ export default function Cart() {
         setCouponMessage(data.message)
     };
 
-
     return (
-        <main >
-      <LoadingBar color='#f11946' progress={100} height={3} />
+        <main className=''>
+            <LoadingBar color='#f11946' progress={100} height={3} />
             <div className={`${styles.cartWrapper} row mx-5 gap-4`}>
-                <div className={`${styles.cartLeft} col-7 justify-content-between`}>
+                <div className={`${styles.cartLeft} col-7 justify-content-between mt-2`}>
 
                     <div className={styles.products}>
                         {
                             products && products.length == 0 ? <div className='m-auto text-center d-flex justify-content-between align-items-center'>No Items in your cart</div> :
                                 products.map((product) => (
-                                    <div key={product.id} className={`${styles.itemWrapper} mt-2 mx-2 d-flex mb-5 align-self-start  flex-column align-items-baseline shadow-lg rounded-2`}>
+                                    <div key={product.id} className={`${styles.itemWrapper} mt-2 mx-2 d-flex mb-5 align-self-start  flex-column align-items-baseline -lg rounded-4`}>
                                         <div className='d-flex justify-content-between w-100'>
                                             <h1 className='p-2'>Review item And Shipping</h1>
                                             <button className={`${styles.deleteButton} btn btn-danger m-2`} onClick={() => handleDelete(product.productId)}>
@@ -200,37 +215,17 @@ export default function Cart() {
 
 
                     <div className={`${styles.deliveryWrapper} shadow-lg rounded-2`}>
-                        <div className='mt-4'>
 
-                            <div className='mx-2 d-flex justify-content-between align-items-center'>
-                                <h1 className='my-3'>Delivery Information</h1>
-                                <button>Edit information <i className='bi bi-pencil-square ml-2'></i></button>
-                            </div>
-                            <div className={`${styles.informations} d-flex align-items-center mx-3 justify-content-between`}>
-                                <h2 className='my-3'>Name:</h2>
-                                <span>James</span>
-                            </div>
-                            <div className={`${styles.informations} d-flex align-items-center mx-3 justify-content-between`}>
-                                <h2 className='my-3'>Adress:</h2>
-                                <span>James</span>
-                            </div>
-                            <div className={`${styles.informations} d-flex align-items-center mx-3 justify-content-between`}>
-                                <h2 className='my-3'>City:</h2>
-                                <span>James</span>
-                            </div>
-                            <div className={`${styles.informations} d-flex align-items-center mx-3 justify-content-between`}>
-                                <h2 className='my-3'>Zip Code:</h2>
-                                <span>James</span>
-                            </div>
-                            <div className={`${styles.informations} d-flex align-items-center mx-3 justify-content-between`}>
-                                <h2 className='my-3'>Email:</h2>
-                                <span>James</span>
-                            </div>
+                        <div className='mx-5'>
+                            <h2>Your Address</h2>
+                            <hr />
+                            <AdressForm />
                         </div>
                     </div>
+
                 </div>
 
-                <div className={`${styles.personnal_info} col-3 shadow-lg p-3 mb-3`}>
+                <div className={`${styles.personnal_info} col-3 shadow-lg p-3 mb-3 mt-2 rounded-3`}>
 
                     <div>
                         <h1>Order Summary</h1>
@@ -302,31 +297,31 @@ export default function Cart() {
                         </div>
                         {
                             selectedOption === "Paypal" ?
-                            <PayPalScriptProvider 
-                            options={{
-                                "client-id": "AeFSn8i_mwvD-7EX3Zpc_8RAruQY06g5qEZbvlFqaNTaHjeLJl6da4pWD_LBCldz3wJ9_2fKulImuK9i",
+                                <PayPalScriptProvider
+                                    options={{
+                                        "client-id": "AeFSn8i_mwvD-7EX3Zpc_8RAruQY06g5qEZbvlFqaNTaHjeLJl6da4pWD_LBCldz3wJ9_2fKulImuK9i",
 
-                            }}>
-                                <PayPalButtons 
-                                createOrder={(data, actions) => {
-                                    return actions.order
-                                        .create({
-                                            purchase_units: [
-                                                {
-                                                    amount: {
-                                                        value: total ,
-                                                    },
-                                                },
-                                            ],
-                                        })
-                                        .then((orderId) => {
-                                            // Your code here after create the order
-                                            return orderId;
-                                        });
-                                }}/>
-                            </PayPalScriptProvider>
+                                    }}>
+                                    <PayPalButtons
+                                        createOrder={(data, actions) => {
+                                            return actions.order
+                                                .create({
+                                                    purchase_units: [
+                                                        {
+                                                            amount: {
+                                                                value: total,
+                                                            },
+                                                        },
+                                                    ],
+                                                })
+                                                .then((orderId) => {
+                                                    // Your code here after create the order
+                                                    return orderId;
+                                                });
+                                        }} />
+                                </PayPalScriptProvider>
                                 :
-                                <PaymentForm />
+                                <PaymentForm cartHasnoItems={cartHasnoItems} products={products} />
                         }
                     </div>
                 </div>

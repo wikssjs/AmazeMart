@@ -40,10 +40,16 @@ export default function Product() {
                 setProduct(data.product);
                 setReviews(data.reviews);
             })
-    }, [])
+    }, [index])
 
     useEffect(() => {
-        fetch('http://localhost:3001/cart')
+        fetch('http://localhost:3001/cart',
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'user-id': Number(decode(localStorage.getItem('token')).id)
+                }
+            })
             .then(res => res.json())
             .then(data => setProducts(data.cart))
     }, [])
@@ -60,9 +66,9 @@ export default function Product() {
 
         let pass = true;
 
-        products.forEach((item) => {
+        products.map((item) => {
             if (item.productId === product.id) {
-                if (item.quantity < product.quantity && item.quantity + quantity <= product.quantity) {
+                if (item.quantity < product.quantity) {
                     //use a popup to tell the user that the product cannot be added to cart
                     pass = true;
                 }
@@ -74,6 +80,8 @@ export default function Product() {
         });
 
         if (!pass) {
+
+            alert('Product cannot be added to cart');
             return;
         }
 
@@ -92,7 +100,6 @@ export default function Product() {
         })
 
         let result = await reponse.json();
-        console.log(result)
         setProducts(result.cart);
 
 

@@ -12,9 +12,11 @@ export default function Login() {
 			'http://localhost:3001/user/register',
 			{
 				body: JSON.stringify({
-					username: event.target.txt.value,
+					fullname: event.target.txt.value,
 					email: event.target.email.value,
+					phone: event.target.phone.value,
 					password: event.target.pswd.value
+
 				}),
 				headers: {
 					'Content-Type': 'application/json'
@@ -64,8 +66,9 @@ export default function Login() {
 				<div className={styles.signup}>
 					<form onSubmit={registerUser}>
 						<label for="chk" aria-hidden="true">Sign up</label>
-						<input type="text" name="txt" placeholder="User name" required="" />
+						<input type="text" name="txt" placeholder="Full Name" required="" />
 						<input type="email" name="email" placeholder="Email" required="" />
+						<input type="Number" name="phone" placeholder="Phone Number" required="" />
 						<input type="password" name="pswd" placeholder="Password" required="" />
 						<button type='submit'>Sign up</button>
 					</form>

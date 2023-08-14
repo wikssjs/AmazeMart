@@ -53,7 +53,7 @@ export default function Home() {
       <div>
         <h1 className='ml-5 my-3'>Products For you</h1>
 
-        <div className='row gap-4 justify-content-center my-5'>
+        <div className='row gap-5  my-5'>
           {
             homeData.products.map((product) => (
               <Product setFetchProducts={setFetchProducts} fetchProducts={fetchProducts} key={product.id} product={product} />

@@ -11,6 +11,8 @@ export default function Header() {
 
   const [search, setSearch] = useState('')
   const [user, setUser] = useState({})
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [windowWidth, setWindowWidth] = useState(0);
   const router = useRouter()
 
 
@@ -22,6 +24,22 @@ export default function Header() {
     console.log(user);
   }, [router])
 
+  // Update windowWidth state on window resize
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Clean up the event listener when component unmounts
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+
 
 
   const handleSearchChange = (e) => {
@@ -31,6 +49,8 @@ export default function Header() {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault()
+
+    setMenuOpen(false)
 
     if (search === '') {
       return;
@@ -45,14 +65,11 @@ export default function Header() {
     router.push('/auth')
   }
 
-
-
   return (
-    <header className={`${styles.header} d-flex flex-column shadow-lg rounded`}>
+    <header className={`${styles.header} d-flex flex-column shadow-lg rounded `}>
 
       <div className={styles.inner_header}>
-
-        <div className={`${styles.top_header} d-flex w-100 `}>
+        <div className={`${styles.top_header} d-md-flex w-100 d-none`}>
           <div className="d-flex w-100 mx-5 ">
             <div className="d-flex w-100 justify-content-between h-100 align-items-center">
               <div className="d-flex gap-2 align-items-center">
@@ -71,25 +88,28 @@ export default function Header() {
             </div>
           </div>
         </div>
-        <nav className="d-flex gap-5 mx-5">
+        <nav className="d-flex gap-5 justify-content-between">
           <div>
-            <Link href="/" className={styles.logo}>
+            <Link href="/" className={styles.logo} onClick={() => { setMenuOpen(false) }}>
               <Image src={logo} alt="site logo" width={50} height="auto" className="" />
               <span>AmazeMart</span>
             </Link>
           </div>
 
-          <div className={`${styles.links}  mt-2 d-flex  w-100 justify-content-between align-items-center`}>
+          <div className={`${styles.links} ${menuOpen ? styles.open : ""} ${!menuOpen && windowWidth <= 1400 ? "animate__bounceOutUp" : "animate__bounceInDown"} animate__animated mt-2 d-flex justify-content-between align-items-center `}>
             {
               user && (
-                <ul className="d-flex gap-5  w-50 ">
-                  <li>              <Link href="/categories">Categories</Link></li>
-                  <li>Wahts New</li>
-                  <li>Delivery</li>
+                <ul className={`${styles.left_menu} d-flex gap-5  w-50 `}>
+                  <li onClick={()=>{setMenuOpen(false)}}>              
+                    <Link  href="/categories">Categories</Link></li>
+                  <li onClick={()=>{setMenuOpen(false)}}>
+                    <Link href="/delivery">Delivery</Link>
+                    </li>
+                    
                 </ul>
               )
             }
-            <ul className=" d-flex gap-5 w-100  align-items-center justify-content-end">
+            <ul className={`${styles.right_menu}  d-flex gap-5 w-100  align-items-center justify-content-end`}>
               {
                 user && (
                   <>
@@ -97,13 +117,13 @@ export default function Header() {
                       <input onChange={handleSearchChange} className={styles.seachInput} type="search" name="" id="" />
                       <button onClick={handleSearchSubmit}><i className="bi bi-search"></i></button>
                     </li>
-                    <li>
+                    <li  onClick={()=>{setMenuOpen(false)}}>
                       <Link href='/account'>
-                      <i className="bi bi-person mr-2"></i>
-                      Account
+                        <i className="bi bi-person mr-2"></i>
+                        Account
                       </Link>
                     </li>
-                    <li className="text-danger">
+                    <li className="text-danger"  onClick={()=>{setMenuOpen(false)}}>
                       <Link href="/cart">
                         <i className="bi bi-cart mr-2"></i>
                         Cart</Link>
@@ -115,7 +135,7 @@ export default function Header() {
               {
                 !user && (
 
-                  <li>
+                  <li  onClick={()=>{setMenuOpen(false)}}>
                     <Link href="/auth">
                       <i class="bi bi-box-arrow-in-right mr-2"></i>
                       Auth</Link>
@@ -126,7 +146,7 @@ export default function Header() {
               {
                 user && (
 
-                  <li>
+                  <li  onClick={()=>{setMenuOpen(false)}}>
                     <Link onClick={logOut} href="#" className="text-danger">
                       <i class="bi bi-box-arrow-in-left text-danger mr-2"></i>
                       Sign Out
@@ -135,6 +155,12 @@ export default function Header() {
                 )
               }
             </ul>
+          </div>
+
+          <div className={`${styles.hamburger} ${menuOpen ? styles.open : ''}`} onClick={() => { setMenuOpen(!menuOpen) }}>
+            <span className={styles.bar}></span>
+            <span className={styles.bar}></span>
+            <span className={styles.bar}></span>
           </div>
         </nav>
       </div>

@@ -47,7 +47,8 @@
   font-size: 18px;
 }
 
-.addCart{
+.addCart:hover{
+    background-color: #0056b3;
 }
 
 .text button:focus,.addCart:focus {

@@ -11,7 +11,13 @@ export default function Product({product,fetchProducts,setFetchProducts}) {
 
 
     useEffect(() => {
-        fetch('http://localhost:3001/cart')
+        fetch('http://localhost:3001/cart',
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'user-id': decode(localStorage.getItem('token')) && decode(localStorage.getItem('token')).id
+                }
+            })
             .then(res => res.json())
             .then(data => setProducts(data.cart))
     }, [])
@@ -47,6 +53,7 @@ export default function Product({product,fetchProducts,setFetchProducts}) {
         });
 
         if (!pass) {
+            alert('Product cannot be added to cart');
             return;
         }
 
@@ -91,7 +98,7 @@ export default function Product({product,fetchProducts,setFetchProducts}) {
             <Link href={`/product/${product.id}`}>
 
                 <div className={styles.product}>
-                    <Image src={headphoneImg} width={300} />
+                    <Image src={headphoneImg} width={260} alt='' />
                     {/* <Image src={`${product.image}`} alt="" width={300} height="300" /> */}
                 </div>
             </Link>
