@@ -1,0 +1,84 @@
+.user_detail_container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem 2rem;
+    font-size: 16px;
+    color: #333;
+    background-color: #f6f6f6;
+}
+
+.user_detail_container h1{
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+}
+
+.cards_section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.info_card {
+    flex: 1;
+    background: #041f40;
+    border-radius: 5px;
+    color: #0affef;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 255, 255, 0.5);
+    transition: 0.3s ease-in-out;
+}
+
+.info_card:hover {
+    transform: translateY(-5px);
+}
+
+.cart_section {
+    margin: 2rem 0;
+    padding: 1rem;
+    border-radius: 5px;
+    border-radius: 12px;
+}
+
+.cart_item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 20px;
+    background-image: linear-gradient(to bottom right, #041f40, #032a5a); /* subtle gradient using different shades of dark blue */
+    color: white;
+    border-radius: 12px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 255, 255, 0.5);
+
+}
+
+.order_card .card_header{
+    padding: 20px; 
+    font-weight: bold;
+    background-color: #032a5a; /* slightly darker shade for the header */
+    border-bottom: 1px solid #02344a; /* adjusted the border color */
+    display: flex; 
+    justify-content: space-between;
+    font-weight: bold;
+}
+.order_card {
+    color: white;
+    background-color:white; /* dark blue color */
+    background-image: linear-gradient(to bottom right, #041f40, #032a5a); /* subtle gradient using different shades of dark blue */
+    border: 0; 
+    border-radius: 12px; 
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 255, 255, 0.5);
+
+}
+.order_card ul li{
+    background:none; /* dark blue color */
+    color: white;
+}
+
+.order_card:hover {
+    transform: translateY(-5px);
+}

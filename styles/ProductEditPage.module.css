@@ -1,0 +1,13 @@
+/* styles/ProductEditPage.module.css */
+.edit_container {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.edit_container form {
+    background-color: #fff;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}

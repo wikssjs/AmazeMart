@@ -6,13 +6,13 @@ const PaymentConfirmation = () => {
   const router = useRouter();
 
   // Redirect to home page after 3 seconds
-//   useEffect(() => {
-//     const timer = setTimeout(() => {
-//       router.push('/');
-//     }, 3000);
+  //   useEffect(() => {
+  //     const timer = setTimeout(() => {
+  //       router.push('/');
+  //     }, 3000);
 
-//     return () => clearTimeout(timer);
-//   }, []);
+  //     return () => clearTimeout(timer);
+  //   }, []);
 
   return (
     <div className="container my-5 text-center">
@@ -24,13 +24,22 @@ const PaymentConfirmation = () => {
           with details of your order. If you have any questions or concerns, please feel free to contact
           our customer support.
         </p>
-        <button
-          className={`${styles.returnHome} text button`}
-          onClick={() => router.push('/')}
-        >
-          Return to Homepage
-          <i className='ml-2 bi bi-house'></i>
-        </button>
+        <div className='row flex-column gap-5'>
+          <button
+            className={`${styles.returnHome} text button col-3`}
+            onClick={() => router.push('/account/orders')}
+          >
+            Show Your orders
+            <i className='ml-2 bi bi-house'></i>
+          </button>
+          <button
+            className={`${styles.returnHome} text button col-3`}
+            onClick={() => router.push('/')}
+          >
+            Return to Homepage
+            <i className='ml-2 bi bi-house'></i>
+          </button>
+        </div>
       </div>
     </div>
   );

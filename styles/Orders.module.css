@@ -1,64 +1,48 @@
 .container {
-    max-width: 90%;
-    margin: 0 auto;
-    padding: 3rem;
-    background: linear-gradient(135deg, #71b7e6, #9b59b6);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    border-radius: 20px;
-  }
-  
-  .card {
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: box-shadow 0.3s ease;
-  }
-  
-  .card:hover {
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  }
-  
-  .card_header {
-    padding: 15px;
-    font-weight: bold;
-    background-color: #f9f9f9;
-    border-bottom: 1px solid #e0e0e0;
-  }
-  
-  .card_body {
-    padding: 20px;
-  }
-  
-  .image_container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .container h2 {
-    color: #333333;
-  }
-  
- .card h6 {
-    color: #333333;
-    margin-bottom: 5px;
-  }
-  
- .card p {
-    color: #666666;
-    margin-bottom: 10px;
-  }
-  
- .card span {
-    color: #333333;
-  }
-  
- .container hr {
-    border-color: #e0e0e0;
-  }
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 3rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  border-radius: 20px;
+}
 
-  .blue_text{
-    color: #0056b3;
-    text-decoration: none;
-  }
+.card {
+  background-color: #041f40; /* dark blue color */
+  background-image: linear-gradient(to bottom right, #041f40, #032a5a); /* subtle gradient using different shades of dark blue */
+  border: 0; 
+  border-radius: 12px; 
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.15); 
+  transform: translateY(-5px); 
+}
+
+.card_header {
+  padding: 20px; 
+  font-weight: bold;
+  background-color: #032a5a; /* slightly darker shade for the header */
+  border-bottom: 1px solid #02344a; /* adjusted the border color */
+  display: flex; 
+  justify-content: space-between;
+}
+
+.container h2, .card h6, .card span {
+  color: #ffffff; /* changed to white for better visibility against the dark background */
+}
+
+.card p {
+  color: #b0b8c1; /* a lighter shade for regular text for better contrast */
+}
+
+.blue_text {
+  color: #67a1d4; /* a lighter blue for links or highlighted text against dark background */
+}
+
+.card_header span:last-child {
+  background: #032a5a; /* adjusted to match the card_header background */
+  padding: 5px 10px;
+  border-radius: 10px;
+}
