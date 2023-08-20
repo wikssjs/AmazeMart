@@ -176,7 +176,7 @@ export default function Cart() {
     };
 
     return (
-        <main className=''>
+        <main className='h-100'>
             <LoadingBar color='#f11946' progress={100} height={3} />
             <div className={`${styles.cartWrapper} row mx-5 gap-4`}>
                 <div className={`${styles.cartLeft} col-7 justify-content-between mt-2`}>
@@ -195,7 +195,7 @@ export default function Cart() {
                                         <div className='w-100  d-flex  align-items-center justify-content-around'>
 
                                             <div className='d-flex align-items-center'>
-                                                <Image src={headphone} width={150} alt='image-product' />
+                                                <Image src={"/img/"+product.image} width={150} height={100} alt='image-product' />
                                                 <h2>{product.name}</h2>
 
                                             </div>

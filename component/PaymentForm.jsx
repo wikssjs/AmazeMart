@@ -25,6 +25,7 @@ export default function PaymentForm({ cartHasnoItems, products }) {
     const router = useRouter();
 
     const handleInputChange = (e) => {
+        console.log(products)
         const { name, value } = e.target;
 
         if (name === 'email') {

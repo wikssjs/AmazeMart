@@ -1,19 +1,18 @@
-/* styles/ProductEditPage.module.css */
-.edit_container {
+.products_container{
     padding: 2rem;
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 1200px;
+    margin: 20px auto;
+    border-radius: 20px;
 }
 
-.edit_container form {
+.products_container form{
     background-color: #fff;
     padding: 2rem;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     border-radius: 8px;
 }
-
-.edit_container form input, .edit_container form textarea {
-    width: 100%;
+.form_control{
+       /* width: 100%; */
     font-size: 16px;
     border: none;
     border-radius: 10px;
@@ -24,7 +23,13 @@
     border: #333 1px solid;
 }
 
-.edit_button{
+.form_control:focus{
+    outline: none;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.4);
+    border: #333 1px solid;
+}
+
+.btn_back{
     align-items: center;
     appearance: none;
     background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
@@ -55,11 +60,54 @@
     font-size: 18px;
 }
 
-.edit_button:hover {
+.btn_back:hover {
     box-shadow: #5468ff 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+
+    color: white;
+    text-decoration: none;
 }
 
-.edit_button:focus{
+.btn_submit{
+    bottom: 0;
+    z-index: 2;
+    right: 10%;
+    align-items: center;
+    appearance: none;
+    background-image: radial-gradient(100% 100% at 100% 0, #9ae88f 0, #4caf50 100%);
+    border: 0;
+    border-radius: 6px;
+    box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "JetBrains Mono",monospace;
+    height: 48px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 18px;
+}
+
+.btn_submit:hover {
+    box-shadow: #4caf50 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+
+    color: white;
+    text-decoration: none;
+}
+
+.btn_submit:focus{
     box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
     transform: translateY(-2px);
 }

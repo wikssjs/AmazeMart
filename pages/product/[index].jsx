@@ -114,6 +114,8 @@ export default function Product() {
     // Calculate the number of unfilled stars
     const unfilledStars = 5 - roundedAverage;
 
+   
+      
 
 
     return (
@@ -123,15 +125,18 @@ export default function Product() {
                 <div className='d-flex  flex-wrap justify-content-between border-bottom border-muted'>
                     <div className={`${styles.image} col-xl-6 shadow-lg`}>
                         {/* <Image src={headphone} /> */}
-                        <Carousel showArrows className={styles.carousel}>
-                            <div>
-                                <img src="https://i5.walmartimages.com/asr/0a4daa53-2aea-46b4-b5d5-9b04c7a416e9.7bd167d319855b52f0bd56ff7dc2544b.jpeg" />
+                        <Carousel  
+                        className={styles.carousel}
+                        
+                        >
+                            <div className=''>
+                            <img src={`/img/${product.image}`} />
                             </div>
                             <div>
-                                <img src="https://i5.walmartimages.com/asr/0a4daa53-2aea-46b4-b5d5-9b04c7a416e9.7bd167d319855b52f0bd56ff7dc2544b.jpeg" />
+                                <img src={`/img/${product.image}`} />
                             </div>
                             <div>
-                                <img src="https://i5.walmartimages.com/asr/0a4daa53-2aea-46b4-b5d5-9b04c7a416e9.7bd167d319855b52f0bd56ff7dc2544b.jpeg" />
+                                <img src={`/img/${product.image}`} />
                             </div>
                         </Carousel>                    </div>
                     <div className={`${styles.rigthSide} my-4 col-xl-5  d-flex flex-column justify-content-between`}>

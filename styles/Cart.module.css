@@ -3,7 +3,7 @@
   font-weight: 600;
 }
 .cartLeft {
-  height: 110vh;
+  height: 165vh;
 }
 .itemWrapper {
 background-color: antiquewhite;
@@ -11,8 +11,8 @@ background-color: antiquewhite;
 }
 
 .products {
-  overflow: auto;
-  height: 60%;
+  overflow: scroll;
+  height: 50%;
 }
 
 .amount {
@@ -98,6 +98,7 @@ background-color: antiquewhite;
 
 .personnal_info {
   background-color: antiquewhite;
+  height: 100vh;
 }
 
 .lblCoupon {

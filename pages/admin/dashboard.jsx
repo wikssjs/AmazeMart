@@ -1,15 +1,31 @@
 import styles from '../../styles/Dashboard.module.css'; // Assuming your CSS module is named this way.
 
 import LineChart from '../../component/LineChart';
+import { useEffect,useState } from 'react';
 
 export default function DashboardPage() {
+    const [globalData , setGlobalData] = useState([])
+    const [monthlyData , setMonthlyData] = useState([])
+    const [recentOrder , setRecentOrder] = useState([])
+    useEffect(() => {
+        fetch('http://localhost:3001/admin/dashboard')
+            .then(response => response.json())
+            .then(json => {
+                console.log(json.recentOrders)
+                if (json.globalData) {
+                    setGlobalData(json.globalData);
+                    setMonthlyData(json.monthlyData.map((item) => item.monthly_total));
+                    setRecentOrder(json.recentOrders);
+                }
+            })
+    }, [])
 
     const data = {
         labels: ['January', 'February', 'March', 'April', 'May','juin','juillet','aout','septembre','octobre','novembre','decembre'],
         datasets: [
           {
             label: 'Monthly Sales ($)',
-            data: [1200, 1900, 3300, 4900, 3700,1000,5000,2000,3000,4000,5000,6000],
+            data: monthlyData,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -51,25 +67,25 @@ export default function DashboardPage() {
         }
       };
     return (
-        <div className={` ${styles.dashboard_container} shadow-lg rounded-5`}>
+        <div className={`${styles.dashboard_container} shadow-lg rounded-5`}>
             <h1 className={`text-center ${styles.dashboard_title}`}>Dashboard Page</h1>
 
             <div className={`row ${styles.cards_container}`}>
-                <div className={`col-md-3 ${styles.card}`}>
+                <div className={`col-md-3 ${styles.card} animate__bounceInLeft animate__animated`}>
                     <h2>Total Users</h2>
-                    <p>5,234</p>
+                    <p>{globalData.users_count}</p>
                 </div>
-                <div className={`col-md-3 ${styles.card}`}>
+                <div className={`col-md-3 ${styles.card}  animate__bounceInLeft animate__animated`}>
                     <h2>Total Products</h2>
-                    <p>120</p>
+                    <p>{globalData.products_count}</p>
                 </div>
-                <div className={`col-md-3 ${styles.card}`}>
+                <div className={`col-md-3 ${styles.card} animate__bounceInRight animate__animated`}>
                     <h2>Orders Today</h2>
-                    <p>45</p>
+                    <p>{globalData.orders_count}</p>
                 </div>
-                <div className={`col-md-3 ${styles.card}`}>
+                <div className={`col-md-3 ${styles.card} animate__bounceInRight animate__animated`}>
                     <h2>Revenue Today</h2>
-                    <p>$2,450</p>
+                    <p>$ {globalData.total_money_for_today} </p>
                 </div>
             </div>
 
@@ -82,7 +98,7 @@ export default function DashboardPage() {
                 </div>
             </div>
 
-            <div className={`mt-4 ${styles.table_container}`}>
+            <div className={`mt-4 ${styles.table_container} animate__animated animate__fadeInUp`}>
                 <h2>Recent Orders</h2>
                 {/* Replace this with an actual table component */}
                 <table className="table table-bordered">
@@ -92,22 +108,23 @@ export default function DashboardPage() {
                             <th>Product</th>
                             <th>Quantity</th>
                             <th>Price</th>
+                            <th>User</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Laptop</td>
-                            <td>2</td>
-                            <td>$2000</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Mouse</td>
-                            <td>5</td>
-                            <td>$250</td>
-                        </tr>
-                        {/* ... Other rows ... */}
+                       
+                        {
+                            recentOrder.map((item) => (
+                                <tr key={item.order_id}>
+                                    <td>{item.order_id}</td>
+                                    <td>{item.product_name}</td>
+                                    <td>{item.quantity}</td>
+                                    <td>$ {item.price}</td>
+                                    <td>{item.fullname}</td>
+                                </tr>
+                            ))
+
+                        }
                     </tbody>
                 </table>
             </div>

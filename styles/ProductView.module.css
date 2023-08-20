@@ -43,6 +43,7 @@
   background-color: antiquewhite;
   display: flex;
   justify-content: center;
+  height: 600px;
 }
 
 /* CSS */
@@ -193,9 +194,14 @@
 }
 
 .carousel {
-  margin: 0 auto;
   padding: 0 70px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
+
 
 @media screen and (max-width: 768px) {
   .image img {

@@ -67,7 +67,7 @@ export default function UserDetail() {
                     <div className={`card ${styles.info_card}`}>
                         <div className="card-body">
                             <h5 className="card-title">Member Since</h5>
-                            <p className="card-text">{user.memberSince}</p>
+                            <p className="card-text">{user.member_since}</p>
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@ export default function UserDetail() {
                     <div className={`card ${styles.info_card}`}>
                         <div className="card-body">
                             <h5 className="card-title">Total Spent</h5>
-                            <p className="card-text">{user.totalSpent}</p>
+                            <p className="card-text">{user.total_checkout_amount}$</p>
                         </div>
                     </div>
                 </div>
@@ -85,7 +85,7 @@ export default function UserDetail() {
                     <div className={`card ${styles.info_card}`}>
                         <div className="card-body">
                             <h5 className="card-title">Total Items Bought</h5>
-                            <p className="card-text">{user.totalItemsBought}</p>
+                            <p className="card-text">{user.total_items_checked_out}</p>
                         </div>
                     </div>
                 </div>
@@ -111,13 +111,13 @@ export default function UserDetail() {
             orders.map((order, index) => (
                 <div key={index} className={`card ${styles.order_card} mb-3`}>
                     <div className={`${styles.card_header} card-header`}>
-                        Order ID: {order.order_id}
+                        Order ID: {order.id}
                     </div>
                     <ul className="list-group list-group-flush">
                         {order.products.map((item, idx) => (
                             <li key={idx} className="list-group-item">
                                 <Image src={heaphone} alt={item.itemName} width="50" />
-                                <span>{item.product_name}</span> - 
+                                <span>{item.name}</span> - 
                                 <span>{item.price}</span>
                             </li>
                         ))}

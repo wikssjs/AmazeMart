@@ -1,38 +1,45 @@
+import React from 'react';
+import styles from '../styles/Footer.module.css';
+import Link from 'next/link';
 
-export default function Footer() {
-  // return (
-  //   <footer className={styles.footer}>
-  //     <div className="container">
-  //       <div className="row">
-  //         <div className="col-md-6">
-  //           <h3>Site officiel d&apos;Haïti</h3>
-  //           <p>© James Bell 2023, tous droits réservés.</p>
-  //         </div>
-  //         <div className="col-md-6">
-  //           <h3>Contactez-nous</h3>
-  //           <p>
-  //             <i className={`fas fa-map-marker-alt ${styles.icon}`}></i> Adresse: 123 Rue de la Liberté, Port-au-Prince, Haïti
-  //           </p>
-  //           <p>
-  //             <i className={`fas fa-phone ${styles.icon}`}></i> Téléphone: +509 1234 5678
-  //           </p>
-  //           <p>
-  //             <i className={`fas fa-envelope ${styles.icon}`}></i> Email: info@haiti.com
-  //           </p>
-  //           <div className={styles.socialIcons}>
-  //             <a href="#">
-  //               <i className="fab fa-facebook fa-lg"></i>
-  //             </a>
-  //             <a href="#">
-  //               <i className="fab fa-twitter fa-lg"></i>
-  //             </a>
-  //             <a href="#">
-  //               <i className="fab fa-instagram fa-lg"></i>
-  //             </a>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </footer>
-  // );
-}
+const Footer = () => {
+    return (
+        <footer className={`${styles.footer} shadow-lg`}>
+            <div className={styles.footerSections}>
+                
+                <div className={styles.footerSection}>
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><Link href="/products">Products</Link></li>
+                        <li><Link href="/categories">Categories</Link></li>
+                        <li><Link href="/deals">Deals</Link></li>
+                    </ul>
+                </div>
+                
+                <div className={styles.footerSection}>
+                    <h4>Information</h4>
+                    <ul>
+                        <li><Link href="/about">About Us</Link></li>
+                        <li><Link href="/shipping">Shipping & Returns</Link></li>
+                        <li><Link href="/terms">Terms & Conditions</Link></li>
+                    </ul>
+                </div>
+                
+                <div className={styles.footerSection}>
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><Link href="/contact">Contact Us</Link></li>
+                        <li><Link href="/faq">FAQ</Link></li>
+                        <li><Link href="/support">Support</Link></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div className={styles.footerBottom}>
+                <p>&copy; 2023 AmazeMart. All rights reserved.</p>
+            </div>
+        </footer>
+    );
+};
+
+export default Footer;

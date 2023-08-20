@@ -34,7 +34,7 @@ export default function Home() {
   
   return (
     
-    <main className='mx-5 d-flex flex-column justify-content-'>
+    <main className='mx-5 d-flex flex-column h-100'>
       <LoadingBar color='#f11946' progress={100} height={3} />
       <div className={`${styles.imageLayer} container-fluid`}>
         <div className='d-flex justify-content-around'>

@@ -98,7 +98,7 @@ export default function Product({product,fetchProducts,setFetchProducts}) {
             <Link href={`/product/${product.id}`}>
 
                 <div className={styles.product}>
-                    <Image src={headphoneImg} width={260} alt='' />
+                    <Image src={`/img/${product.image}`} width={280} height={230} alt='' />
                     {/* <Image src={`${product.image}`} alt="" width={300} height="300" /> */}
                 </div>
             </Link>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "../styles/AdminSidebar.module.css";
 
 export default function AdminSidebar() {
+  
   return (
     <div className={styles.sidebar}>
       <div className={styles.sidebar_heading}>Admin Panel</div>

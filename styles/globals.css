@@ -20,7 +20,7 @@ body {
 }
 
 main{
-height: 100vh;
+  min-height: 100vh;
 }
   
   /* Style the headings with a soft gradient */

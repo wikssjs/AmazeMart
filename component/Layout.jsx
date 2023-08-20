@@ -7,7 +7,6 @@ export default function Layout({children,setPage}){
         
     {children}
 
-
     <Footer/>
     
     
