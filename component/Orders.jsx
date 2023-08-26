@@ -30,7 +30,7 @@ export default function Orders({userId}) {
 
 
     return (
-        <div className={`${styles.container} container py-5 my-5`}>
+        <main className={`${styles.container} container py-5 my-5`}>
         <div className="row justify-content-center">
           <div className="col-lg-8 col-md-10">
             <h2 className='text-success'>Orders</h2>
@@ -40,15 +40,15 @@ export default function Orders({userId}) {
                 (accumulator, product) => accumulator + product.total_price,0);
   
               return (
-                <div className={`${styles.card} card shadow-sm mb-4`} key={order.order_id}>
+                <div className={`${styles.card} shadow-sm mb-4 animate__fadeInUp animate__animated`} key={order.order_id}>
                   <div className={`${styles.card_header} card-header d-flex justify-content-between`}>
                     <span>Order #: {order.order_id}</span>
                     <span>Date: {formatOrderDate(order.order_date)}</span>
-                    <span>Total: ${order.total_price}</span>
+                    <span>Total: ${order.total_price.toFixed(2)}</span>
                   </div>
                   <div className={`${styles.card_body} card-body`}>
                     {order.products.map((product, index) => (
-                      <div className="row align-items-center mb-3" key={index}>
+                      <div className={`${styles.product}  row align-items-center mb-3 border-top p-1 shadow rounded-3`} key={index}>
                         <div className="col-md-4">
                           <div className={`${styles.image_container} image-container`}>
                             <Link href={`/product/${product.product_id}`}>
@@ -73,6 +73,6 @@ export default function Orders({userId}) {
             })}
           </div>
         </div>
-      </div>
+      </main>
     )
 }

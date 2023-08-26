@@ -85,7 +85,7 @@ export default function DashboardPage() {
                 </div>
                 <div className={`col-md-3 ${styles.card} animate__bounceInRight animate__animated`}>
                     <h2>Revenue Today</h2>
-                    <p>$ {globalData.total_money_for_today} </p>
+                    <p>$ {globalData.total_money_for_today ?  globalData.total_money_for_today.toFixed(2) :0} </p>
                 </div>
             </div>
 

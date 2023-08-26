@@ -121,11 +121,11 @@ function Profile() {
                 <div className="col-lg-8 col-md-10">
                     <h2>Profile</h2>
                     <hr />
-                    <div className={`${styles.card} card shadow-sm mb-4`}>
+                    <div className={`${styles.card} shadow p-5 mb-4 animate__fadeIn animate__animated`}>
                         <div className="card-body">
                             <h5 className={`${styles.card_title} card-title`}>Personal Information</h5>
                             <div className="mb-3">
-                                <label className={`${styles.form_label} form-label`}>Full Name</label>
+                                <label className={`${styles.form_label} form-label`}>Full Name :</label>
                                 {editMode ? 
                                     <input 
                                         type="text" 
@@ -137,7 +137,7 @@ function Profile() {
                                 }
                             </div>
                             <div className="mb-3">
-                                <label className={`${styles.form_label} form-label`}>Email Address</label>
+                                <label className={`${styles.form_label} form-label`}>Email Address :</label>
                                 {editMode ? 
                                     <input 
                                         type="email" 
@@ -149,7 +149,7 @@ function Profile() {
                                 }
                             </div>
                             <div className="mb-3">
-                                <label className={`${styles.form_label} form-label`}>Phone Number</label>
+                                <label className={`${styles.form_label} form-label`}>Phone Number :</label>
                                 {editMode ? 
                                     <input 
                                         type="tel" 
@@ -167,7 +167,7 @@ function Profile() {
                             </button>
                         </div>
                     </div>
-                    <div className={`${styles.card} card shadow-sm`}>
+                    <div className={`${styles.card} p-5 shadow animate__fadeIn animate__animated`}>
                         <div className="card-body">
                             <h5 className={`${styles.card_title} card-title`}>Change Password</h5>
                             <div className="mb-3">

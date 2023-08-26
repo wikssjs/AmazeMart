@@ -57,16 +57,16 @@ export default function ProductsPage() {
             </div>
             <hr />
 
-            <div className="row">
+            <div className="row gap-5  align-items-center justify-content-center">
                 {products.map(product => (
-                    <div key={product.id} className="col-12 col-md-3 mb-4">
-                        <div className={`card ${styles.product_card}`}>
+                    <div key={product.id} className="col mb-4">
+                        <div className={`p-3 d-flex  flex-column ${styles.product_card} mx-auto`}>
                             <Image 
                                 width={250} 
                                 height={150} 
                                 src={'/img/' + product.image} 
                                 alt={product.name} 
-                                className="card-img-top align-self-center"
+                                className="card-img-top align-self-center text-align-center"
                             />
                             <div className="card-body">
                                 <Link href={`/admin/products/reviews?id=${product.id}&name=${product.name}`}>

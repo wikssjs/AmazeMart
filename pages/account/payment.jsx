@@ -4,6 +4,7 @@ import Image from 'next/image';
 import visaCard from '../../public/img/visa-card.png';
 import masterCard from '../../public/img/mastercard.png';
 import { decode } from 'jsonwebtoken';
+import PaymentCreditCard from '../../component/PaymentCreditCard';
 
 function PaymentPage() {
   const [hasCard, setHasCard] = useState(true);
@@ -93,7 +94,6 @@ function PaymentPage() {
             cardHolderName,
             cardNumber,
             expirationDate,
-            cardHolderName,
             cvv,
         };
 
@@ -113,42 +113,20 @@ function PaymentPage() {
 
 
   return (
-    <div className={`${styles.container} container py-5 my-5`}>
+    <div className={`${styles.container} container py-5 my-5 `}>
       {hasCard ? (
-        <div className="row justify-content-center">
-          <div className="col-lg-8 col-md-10">
-            <div className={`${styles.card} card shadow-sm mb-4`}>
+        <div className="row justify-content-center animate__fadeIn animate__animated">
+          <div className="col-lg-8 col-md-10 ">
+            <div className={`${styles.card} shadow mb-4`}>
               <div className="card-body">
-                <div className={`${styles.card_info} card-info`}>
-                  {cardType === 'visa' ? (
-                    <Image
-                      src={visaCard}
-                      alt="Visa Card"
-                      width={120}
-                      height={80}
-                      className={`${styles.card_logo} card-logo`}
-                    />
-                  ) : (
-                    <Image
-                      src={masterCard}
-                      alt="Mastercard"
-                      width={120}
-                      height={80}
-                      className={`${styles.card_logo} card-logo`}
-                    />
-                  )}
-                  <div className={`${styles.card_number} card-number`}>{cardNumber}</div>
-                  <div className={`${styles.card_valid} card-valid`}>
-                    <div className={`${styles.valid_text} valid-text`}>Valid Thru</div>
-                    <div className={`${styles.valid_date} valid-date`}>{expirationDate}</div>
-                  </div>
-                  <div className={`${styles.card_holder} card-holder`}>
-                    <div className={`${styles.holder_title} holder-title`}>Card Holder</div>
-                    <div className={`${styles.holder_name} holder-name`}>{cardHolderName}</div>
-                  </div>
-                </div>
+                <PaymentCreditCard
+                cardType={cardType}
+                cardNumber={cardNumber}
+                expirationDate={expirationDate}
+                cardHolderName={cardHolderName}
+                />
                 {editMode ? (
-                  <form className={`${styles.card_form} card-form`}>
+                  <form className={`${styles.card_form}  shadow border-top mt-3 animate__fadeIn animate__animated`}>
                     <label htmlFor="cardType" className={`${styles.form_label} form-label`}>Card Type</label>
                     <select
                       id="cardType"
@@ -200,12 +178,12 @@ function PaymentPage() {
                         onChange={handleCardHolderNameChange}
                       />
                     </div>
-                    <button onClick={handleSaveChanges} className={`${styles.btn_primary} btn-primary btn`}>Save Changes</button>
+                    <button onClick={handleSaveChanges} className={`${styles.btn_save}`}>Save Changes</button>
                   </form>
                 ) : (
                   <div>
-                    <button onClick={handleEditCard} className="btn btn-secondary">Modify</button>
-                    <button onClick={handleDeleteCard} className="btn btn-danger">Delete</button>
+                    <button onClick={handleEditCard} className={styles.btn_modify}>Modify <i className='ml-2 bi bi-pencil'></i></button>
+                    <button onClick={handleDeleteCard} className={styles.btn_delete}>Delete <i className='bi bi-trash ml-2'></i></button>
                   </div>
                 )}
               </div>

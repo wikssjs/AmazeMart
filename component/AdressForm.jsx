@@ -90,7 +90,7 @@ export default function AdressForm() {
     }
 
     return (
-        <div className="card-body">
+        <div className="p-3">
             {addressSaved ? (
                 <>
                     <h5 className={`${styles.card_title} card-title`}>{address.fullname}</h5>
@@ -128,7 +128,7 @@ export default function AdressForm() {
                         <label className={`${styles.form_label} form-label`}>Country</label>
                         <input type="text" name="country" className={`${styles.form_control} form-control`} value={address.country} onChange={handleChange} required />
                     </div>
-                    <button className={`${styles.btn_primary} btn-primary btn`}>Save</button>
+                    <button className={`${styles.btn_primary} btn-primary btn align-self-center`}>Save</button>
                 </form>
             )}
         </div>

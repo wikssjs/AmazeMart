@@ -34,7 +34,7 @@ export default function Home() {
   
   return (
     
-    <main className='mx-5 d-flex flex-column h-100'>
+    <main className=' d-flex flex-column h-100 mx-5'>
       <LoadingBar color='#f11946' progress={100} height={3} />
       <div className={`${styles.imageLayer} container-fluid`}>
         <div className='d-flex justify-content-around'>
@@ -53,10 +53,10 @@ export default function Home() {
       <div>
         <h1 className='ml-5 my-3'>Products For you</h1>
 
-        <div className='row gap-5  my-5'>
+        <div className='row gap-5   my-5 '>
           {
             homeData.products.map((product) => (
-              <Product setFetchProducts={setFetchProducts} fetchProducts={fetchProducts} key={product.id} product={product} />
+              <Product key={product.i} product={product} />
             ))
           }
         </div>

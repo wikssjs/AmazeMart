@@ -1,8 +1,13 @@
 .productWrapper {
   max-width: 80rem;
-  min-width: 50rem;
+  min-height: 30rem;
 }
 
+.inner_product{
+  box-shadow: 0px 0px 2px #093729;
+  border-top: 2px solid #093729; 
+
+}
 .productWrapper h2 {
   font-size: 1.5em;
 }
@@ -80,7 +85,7 @@
   touch-action: manipulation;
   white-space: nowrap;
   will-change: box-shadow, transform;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .buttons button:focus,
@@ -111,17 +116,18 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  
 }
 
 .reviewCard {
   background-color: #f2f2f2;
-  border: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-top: 2px solid #093729; 
+  box-shadow: 0px 0px 10px #093729;
   transition: box-shadow 0.3s ease;
 }
 
 .reviewCard:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 20px #093729;
 }
 
 .reviewTitle {
@@ -202,11 +208,39 @@
 }
 
 
+@media screen and (max-width:1200px){
+  .image {
+    width: 60%;
+    justify-content: center;
+    margin: auto;
+  }
+}
 
 @media screen and (max-width: 768px) {
-  .image img {
-    width: 100%;
-    height: auto;
-    background-color: rebeccapurple;
+
+  .image {
+    width: 90%;
+    justify-content: center;
+    margin: auto;
+  }
+
+}
+
+@media screen and (max-width: 480px) {
+
+ .buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ }
+
+}
+
+
+@media screen and (max-width: 320px) {
+
+  .image{
+    height: 50%;
   }
 }

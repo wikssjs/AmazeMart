@@ -2,15 +2,20 @@ import styles from '../styles/Product.module.css'
 import headphoneImg from '../public/img/headphoneImg.png'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { decode } from 'jsonwebtoken'
+import { useShowNotification } from './ShowNotificationContext'
 
-export default function Product({product,fetchProducts,setFetchProducts}) {
+export default function Product({product}) {
 
     const [products, setProducts] = useState([]);
+    const [productVar, setProductVar] = useState({});
+
+    const { setNotificationState,setCount } = useShowNotification();
 
 
     useEffect(() => {
+        setProductVar(product)
         fetch('http://localhost:3001/cart',
             {
                 headers: {
@@ -19,8 +24,12 @@ export default function Product({product,fetchProducts,setFetchProducts}) {
                 }
             })
             .then(res => res.json())
-            .then(data => setProducts(data.cart))
-    }, [])
+            .then(data =>{
+
+                setProducts(data.cart)
+                })
+            
+    }, [product,setCount])
 
 
 
@@ -54,6 +63,20 @@ export default function Product({product,fetchProducts,setFetchProducts}) {
 
         if (!pass) {
             alert('Product cannot be added to cart');
+            setNotificationState({
+                isTrue: true,
+                text: `Product cannot be added to cart because there are only ${product.quantity} items left`,
+                color: 'danger'
+            })
+
+            setTimeout(() => {
+                setNotificationState({
+                    isTrue: false,
+                    text: `Product cannot be added to cart because there are only ${product.quantity} items left`,
+                    color: 'danger'
+                })
+            }, 3000);
+
             return;
         }
 
@@ -70,8 +93,25 @@ export default function Product({product,fetchProducts,setFetchProducts}) {
             body: JSON.stringify(data),
         })
 
-        let result = await reponse.json();
-        setProducts(result.cart);
+        if(reponse.ok){
+
+            let result = await reponse.json();
+            setProducts(result.cart);
+            setCount(result.cartCount)
+            setNotificationState({
+                isTrue: true,
+                text: 'Product added to cart successfully !',
+                color: 'success'
+            })
+
+            setTimeout(() => {
+                setNotificationState({
+                    isTrue: false,
+                    text: 'Product added to cart successfully !',
+                    color: 'success'
+                })
+            }, 3000);
+        }
 
     }
 
@@ -79,7 +119,7 @@ export default function Product({product,fetchProducts,setFetchProducts}) {
         let data = {
             productId: product.id,
         }
-        let reponse = await fetch('http://localhost:3001/product/addtofavorite', {
+        await fetch('http://localhost:3001/product/addtofavorite', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -87,29 +127,50 @@ export default function Product({product,fetchProducts,setFetchProducts}) {
             },
             body: JSON.stringify(data),
         })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            setProductVar(data.product)
 
-        setFetchProducts(!fetchProducts);
+            setNotificationState({
+                isTrue: true,
+                text: 'Product added to favorite successfully !',
+                color: 'info'
+            })
+
+            setTimeout(() => {
+                setNotificationState({
+                    isTrue: false,
+                    text: 'Product added to favorite successfully !',
+                    color: 'info'
+                })
+            }
+            , 3000);
+        }
+        )
+
+
     }
 
 
     return (
-        <div className={`${styles.productWrapper} col-1 mt-5`}>
+        <div className={`${styles.productWrapper} col-1 mt-5 mx-auto  animate__fadeInUp animate__animated`}>
 
-            <Link href={`/product/${product.id}`}>
+            <Link href={`/product/${productVar.id}`}>
 
                 <div className={styles.product}>
-                    <Image src={`/img/${product.image}`} width={280} height={230} alt='' />
-                    {/* <Image src={`${product.image}`} alt="" width={300} height="300" /> */}
+                    <Image src={`/img/${productVar.image}`} width={280} height={230} alt='' />
+                    {/* <Image src={`${productVar.image}`} alt="" width={300} height="300" /> */}
                 </div>
             </Link>
             <div className='d-flex justify-content-between'>
-                <Link href="#">
-                    <h2>{product.name}</h2>
+                <Link href={`/productVar/${productVar.id}`}>
+                    <h2>{productVar.name}</h2>
                 </Link>
-                <h3>{product.price}</h3>
-                <button onClick={setFavorite} className={styles.heartButton}><i className={`${product.product_id ? 'bi bi-heart-fill text-danger':'bi bi-heart'}`}></i></button>
+                <h3>$ {productVar.price}</h3>
+                <button onClick={setFavorite} className={styles.heartButton}><i className={`${productVar.product_id ? 'bi bi-heart-fill text-danger':'bi bi-heart'}`}></i></button>
             </div>
-            <span>{product.category}</span>
+            <span>{productVar.category}</span>
             <div className='text-success py-2 d-flex align-items-center'>
                 <span className='p-1'>{averageRating} </span>
                 {roundedAverage && [...Array(roundedAverage)].map((star, i) => (
@@ -118,7 +179,7 @@ export default function Product({product,fetchProducts,setFetchProducts}) {
                 {unfilledStars && [...Array(unfilledStars)].map((star, i) => (
                     <i key={i} className='bi bi-star p-1'></i>
                 ))}
-                <span className='p-1'>  ( {product.review_count} )  </span>
+                <span className='p-1'>  ( {productVar.review_count} )  </span>
             </div>
 
 

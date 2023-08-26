@@ -176,10 +176,10 @@ export default function Cart() {
     };
 
     return (
-        <main className='h-100'>
+        <main className='h-100 mx-auto'>
             <LoadingBar color='#f11946' progress={100} height={3} />
-            <div className={`${styles.cartWrapper} row mx-5 gap-4`}>
-                <div className={`${styles.cartLeft} col-7 justify-content-between mt-2`}>
+            <div className={`${styles.cartWrapper} row mx-3 justify-content-center gap-0`}>
+                <div className={`${styles.cartLeft}  col-lg-7 col-sm-12 justify-content-between mt-2`}>
 
                     <div className={styles.products}>
                         {
@@ -192,19 +192,18 @@ export default function Cart() {
                                                 Delete <i className='bi bi-trash'></i>
                                             </button>
                                         </div>
-                                        <div className='w-100  d-flex  align-items-center justify-content-around'>
+                                        <div className={`${styles.cart_product} w-100   d-flex  align-items-center justify-content-around`}>
 
-                                            <div className='d-flex align-items-center'>
+                                            <div className={`${styles.cart_name} d-flex align-items-center`}>
                                                 <Image src={"/img/"+product.image} width={150} height={100} alt='image-product' />
                                                 <h2>{product.name}</h2>
 
                                             </div>
                                             <div>
-                                                <h3>{product.price}</h3>
+                                                <h3>$ {product.price}</h3>
                                                 <div className={`${styles.amount} d-flex gap-3 shadow-lg rounded-5`}>
                                                     <button data-id={product.productId} onClick={decrement}> <i className='bi bi-dash-circle'></i></button>
                                                     <span>{product.quantity}</span>
-                                                    <p>{message}</p>
                                                     <button data-id={product.productId} onClick={increment}><i className='bi bi-plus-circle'></i></button>
                                                 </div>                                            </div>
                                         </div>
@@ -214,7 +213,7 @@ export default function Cart() {
                     </div>
 
 
-                    <div className={`${styles.deliveryWrapper} shadow-lg rounded-2`}>
+                    <div className={`${styles.deliveryWrapper} shadow-lg rounded-2 mt-5`}>
 
                         <div className='mx-5'>
                             <h2>Your Address</h2>
@@ -225,7 +224,7 @@ export default function Cart() {
 
                 </div>
 
-                <div className={`${styles.personnal_info} col-3 shadow-lg p-3 mb-3 mt-2 rounded-3`}>
+                <div className={`${styles.personnal_info} col-sm-12 col-lg-5 shadow-lg p-3 mb-3  rounded-3`}>
 
                     <div>
                         <h1>Order Summary</h1>

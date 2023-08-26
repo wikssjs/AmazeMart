@@ -23,7 +23,6 @@
 .card {
   border: 1px solid #e1e1e1;
   border-radius: 10px;
-  background-color: #fff;
   transition: box-shadow 0.2s ease-in-out;
 }
 

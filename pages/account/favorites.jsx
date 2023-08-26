@@ -3,11 +3,15 @@ import headphone from '../../public/img/headphoneImg.png';
 import styles from './../../styles/Favorites.module.css'
 import Image from 'next/image';
 import { decode } from 'jsonwebtoken';
+import { useShowNotification } from '../../component/ShowNotificationContext';
 
 function Favorites() {
 
     const [products, setProducts] = useState([]);
     const [cartProducts, setCartProducts] = useState([]);
+    const[quantity,setQuantity] = useState(0);
+
+    const{setCount,setNotificationState} = useShowNotification();
 
     useEffect(() => {
         //get all the products from the database
@@ -79,12 +83,28 @@ function Favorites() {
                 else {
                     pass = false;
                 }
+                alert(product.quantity)
+                setQuantity(product.quantity);
+                
             }
         });
 
 
         if (!pass) {
-            alert('Product cannot be added to cart');
+            setNotificationState({
+                isTrue: true,
+                text: `Product cannot be added to cart because there are only ${quantity} items left`,
+                color: 'danger'
+            })
+
+            setTimeout(() => {
+                setNotificationState({
+                    isTrue: false,
+                    text: `Product cannot be added to cart because there are only ${quantity} items left`,
+                    color: 'danger'
+                })
+            }, 3000);
+
             return;
         }
 
@@ -105,7 +125,21 @@ function Favorites() {
         let result = await response.json();
         console.log(result)
         setCartProducts(result.cart);
+        setCount(result.cart.length);
+        setNotificationState({
+            isTrue: true,
+            text: 'Product added to cart successfully',
+            color: 'success'
+        });
 
+        setTimeout(() => {
+            setNotificationState({
+                isTrue: false,
+                text: '',
+                color: ''
+            });
+        }
+            , 3000);
     }
 
     return (
@@ -118,8 +152,8 @@ function Favorites() {
                     { products.length === 0 && <p className={styles.noFavorites}>You have no favorites yet.</p> }
                     {
 
-                                                products.map(product => (
-                            <div className={`${styles.card} card shadow-sm mb-4 position-relative`} key={product.productId}>
+                                                products.map((product,index) => (
+                            <div className={`${styles.card} p-3 shadow ${index % 2 ==0 ? "animate__fadeInLeft":"animate__fadeInRight"} animate__animated mb-4 position-relative`} key={product.productId}>
                                 <button data-id={product.id} className={`${styles.deleteButton} btn btn-danger m-2 position-absolute`} onClick={(event) => handleDelete(event.currentTarget.dataset.id)}>
                                     Unlike <i className='bi bi-trash'></i>
                                 </button>

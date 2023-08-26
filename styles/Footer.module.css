@@ -3,6 +3,9 @@
     width: 100%;
     background-color: white; /* Light grey background */
     padding: 2rem 1.25rem;
+    border-top: 2px solid #093729; 
+    box-shadow: 0px 0px 10px #093729;
+
 }
 
 .footerSections {

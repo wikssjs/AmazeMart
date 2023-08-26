@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import LoadingBar from 'react-top-loading-bar';
 import { Carousel } from 'react-responsive-carousel';
 import { decode } from 'jsonwebtoken';
+import { useShowNotification } from '../../component/ShowNotificationContext';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 
 export default function Product() {
@@ -19,6 +20,8 @@ export default function Product() {
     const [reviews, setReviews] = useState([]);
     const [reviewerName, setReviewerName] = useState('');
     const [reviewText, setReviewText] = useState('');
+
+    const {setNotificationState,setCount } = useShowNotification();
 
     const increment = () => {
         if (quantity < product.quantity) {
@@ -81,7 +84,20 @@ export default function Product() {
 
         if (!pass) {
 
-            alert('Product cannot be added to cart');
+            setNotificationState({
+                isTrue: true,
+                text: `Product cannot be added to cart because there are only ${product.quantity} items left`,
+                color: 'danger'
+            })
+
+            setTimeout(() => {
+                setNotificationState({
+                    isTrue: false,
+                    text: `Product cannot be added to cart because there are only ${product.quantity} items left`,
+                    color: 'danger'
+                })
+            }, 3000);
+
             return;
         }
 
@@ -99,8 +115,29 @@ export default function Product() {
             body: JSON.stringify(data),
         })
 
+        if(reponse.ok){
+
+
         let result = await reponse.json();
         setProducts(result.cart);
+        setCount(result.cart.length);
+        
+        setNotificationState({
+            isTrue: true,
+            text: 'Product added to cart successfully !',
+            color: 'success'
+        })
+
+        setTimeout(() => {
+            setNotificationState({
+                isTrue: false,
+                text: 'Product added to cart successfully !',
+                color: 'success'
+            })
+        }, 3000);
+
+        
+        }
 
 
 
@@ -114,23 +151,23 @@ export default function Product() {
     // Calculate the number of unfilled stars
     const unfilledStars = 5 - roundedAverage;
 
-   
-      
+
+
 
 
     return (
         <main>
             <LoadingBar color='#f11946' progress={100} height={3} />
             <div className={`${styles.productWrapper}  mx-auto  rounded-5 mt-5`}>
-                <div className='d-flex  flex-wrap justify-content-between border-bottom border-muted'>
-                    <div className={`${styles.image} col-xl-6 shadow-lg`}>
+                <div className={`${styles.inner_product} d-flex  flex-wrap justify-content-between border- border-muted`}>
+                    <div className={`${styles.image} image col-xl-6 shadow-lg`}>
                         {/* <Image src={headphone} /> */}
-                        <Carousel  
-                        className={styles.carousel}
-                        
+                        <Carousel
+                            className={styles.carousel}
+
                         >
-                            <div className=''>
-                            <img src={`/img/${product.image}`} />
+                            <div>
+                                <img src={`/img/${product.image}`} />
                             </div>
                             <div>
                                 <img src={`/img/${product.image}`} />
@@ -148,15 +185,15 @@ export default function Product() {
                                 <span className='p-1'>{averageRating ? averageRating : ""}</span>
                                 {roundedAverage && [...Array(roundedAverage)].map((star, i) => (
                                     <i key={i} className='bi bi-star-fill p-1'></i>
-                                    ))}
+                                ))}
                                 {unfilledStars && [...Array(unfilledStars)].map((star, i) => (
                                     <i key={i} className='bi bi-star p-1'></i>
-                                    ))}
+                                ))}
                                 <span className='p-1'>  ( {reviews.length} )  </span>
                             </div>
                         </div>
 
-                        <h2>{product.price}</h2>
+                        <h2>$ {product.price}</h2>
 
                         <div className={`${styles.amountWrapper} d-flex gap-5 `}>
 
@@ -168,14 +205,14 @@ export default function Product() {
                             <div>
                                 {
                                     product.quantity < 20 ? <p>Only {product.quantity} left dont miss it</p>
-                                    :
-                                    <span className='text-success'>In Stock</span>
+                                        :
+                                        <span className='text-success'>In Stock</span>
                                 }
                             </div>
                         </div>
 
 
-                        <div className={`${styles.buttons} w-50 gap-5 d-flex justify-content-between`}>
+                        <div className={`${styles.buttons} w-50 gap-5 d-flex justify-content-between my-4`}>
                             <button>Buy Now </button>
                             <button onClick={addToCart}>Add to Cart</button>
                         </div>

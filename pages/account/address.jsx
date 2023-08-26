@@ -10,7 +10,7 @@ function AddressPage() {
                 <div className="col-lg-8 col-md-10 ">
                     <h2>Your Address</h2>
                     <hr />
-                    <div className={`${styles.card} card shadow-sm mb-4`}>
+                    <div className={`${styles.card} shadow rounded-3  animate__fadeIn animate__animated mb-4`}>
                        <AdressForm/>
                     </div>
                 </div>

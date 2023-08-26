@@ -1,12 +1,19 @@
+.category{
+    
+}
+
 .category_card {
     color: #333;
     transition: all 0.3s ease;
     cursor: pointer;
-}
+    box-shadow: 0px 0px 5px #093729;
+    border-top: 2px solid #093729; 
+;}
 
 .category_card:hover {
-    color: #007bff;
+    color: #8da1ff;
     text-decoration: none;
+    box-shadow: 0px 0px 10px #093729;
 }
 
 .category_card .card {

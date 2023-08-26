@@ -6,6 +6,7 @@ import styles from "../styles/Header.module.css";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { decode } from 'jsonwebtoken';
+import { useShowNotification } from "./ShowNotificationContext";
 
 export default function Header() {
 
@@ -13,6 +14,9 @@ export default function Header() {
   const [user, setUser] = useState({})
   const [menuOpen, setMenuOpen] = useState(false)
   const [windowWidth, setWindowWidth] = useState(0);
+
+  const {count,setCount} = useShowNotification();
+
   const router = useRouter()
 
 
@@ -21,7 +25,25 @@ export default function Header() {
 
     const user = decode(token);
     setUser(user);
-    console.log(user);
+
+    fetch('http://localhost:3001/cartCount',
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        'user-id': user && user.id
+        }
+        }
+        )
+    .then(response => response.json())
+    .then(data => {
+      // Assume the count is available in data.count
+      console.log(data);
+      setCount(data.cartCount);
+    })
+    .catch(error => {
+      console.error('Error fetching count:', error);
+    });
+
   }, [router])
 
   // Update windowWidth state on window resize
@@ -124,9 +146,11 @@ export default function Header() {
                       </Link>
                     </li>
                     <li className="text-danger"  onClick={()=>{setMenuOpen(false)}}>
-                      <Link href="/cart">
+                      <Link href="/cart" className="position-relative">
+                      <span className={styles.count}>{count}</span>
                         <i className="bi bi-cart mr-2"></i>
-                        Cart</Link>
+                        Cart
+                        </Link>
                     </li>
                   </>
                 )

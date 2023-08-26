@@ -10,9 +10,10 @@
 
 .card {
     border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     border: none;
-    background: #fff;
+    padding: 200px auto;
+    border: 1px solid #e1e1e1;
+    transition: box-shadow 0.2s ease-in-out;
 }
 
 .card_body {
@@ -21,12 +22,12 @@
 
 .card_title {
     font-weight: 600;
-    color: #3f3f3f;
+    color: white;
     margin-bottom: 1rem;
 }
 
 .form_label {
-    color: #606060;
+    color: white;
 }
 
 .form_control {
