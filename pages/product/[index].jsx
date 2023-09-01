@@ -176,12 +176,12 @@ export default function Product() {
                                 <img src={`/img/${product.image}`} />
                             </div>
                         </Carousel>                    </div>
-                    <div className={`${styles.rigthSide} my-4 col-xl-5  d-flex flex-column justify-content-between`}>
+                    <div className={`${styles.rigthSide} my-4 col-xl-5  d-flex flex-column justify-content-between align-items-center`}>
                         <div className={styles.text}>
                             <h1>{product.name}</h1>
                             <p className='m-0'>Un casque pour ecouter de la musique</p>
 
-                            <div className={`${styles.productRating} text-success`}>
+                            <div className={`${styles.productRating} text-success my-3`}>
                                 <span className='p-1'>{averageRating ? averageRating : ""}</span>
                                 {roundedAverage && [...Array(roundedAverage)].map((star, i) => (
                                     <i key={i} className='bi bi-star-fill p-1'></i>
@@ -193,7 +193,7 @@ export default function Product() {
                             </div>
                         </div>
 
-                        <h2>$ {product.price}</h2>
+                        <h2 className='mb-3'>$ {product.price}</h2>
 
                         <div className={`${styles.amountWrapper} d-flex gap-5 `}>
 

@@ -88,8 +88,7 @@ export default function Header() {
   }
 
   return (
-    <header className={`${styles.header} d-flex flex-column shadow-lg rounded `}>
-
+    <header className={`${styles.header} d-flex flex-column shadow-lg rounded`}>
       <div className={styles.inner_header}>
         <div className={`${styles.top_header} d-md-flex w-100 d-none`}>
           <div className="d-flex w-100 mx-5 ">

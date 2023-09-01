@@ -13,7 +13,7 @@ export default function PaymentCreditCard({cardType,cardHolderName,cardNumber,ex
     return (
         <div className={styles.main}>
 
-            <div className={`${styles.card}`}>
+            <div className={`${styles.card} my-5`}>
                 <div className={styles.card__info}>
                     <div className={styles.card__logo}>Platinium</div>
                     <div className={styles.card__chip}>

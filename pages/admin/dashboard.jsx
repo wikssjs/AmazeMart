@@ -71,7 +71,7 @@ export default function DashboardPage() {
             <h1 className={`text-center ${styles.dashboard_title}`}>Dashboard Page</h1>
 
             <div className={`row ${styles.cards_container}`}>
-                <div className={`col-md-3 ${styles.card} animate__bounceInLeft animate__animated`}>
+                <div className={`col-md-3 ${styles.card} animate__bounceInTop animate__animated`}>
                     <h2>Total Users</h2>
                     <p>{globalData.users_count}</p>
                 </div>

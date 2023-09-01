@@ -48,3 +48,10 @@
   padding: 5px 10px;
   border-radius: 10px;
 }
+
+.product{
+  align-items: center;
+  display: flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+}

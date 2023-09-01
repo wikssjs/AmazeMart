@@ -62,7 +62,6 @@ export default function Product({product}) {
         });
 
         if (!pass) {
-            alert('Product cannot be added to cart');
             setNotificationState({
                 isTrue: true,
                 text: `Product cannot be added to cart because there are only ${product.quantity} items left`,
@@ -97,7 +96,7 @@ export default function Product({product}) {
 
             let result = await reponse.json();
             setProducts(result.cart);
-            setCount(result.cartCount)
+            setCount(result.cart.length)
             setNotificationState({
                 isTrue: true,
                 text: 'Product added to cart successfully !',
@@ -119,7 +118,7 @@ export default function Product({product}) {
         let data = {
             productId: product.id,
         }
-        await fetch('http://localhost:3001/product/addtofavorite', {
+        let response = await fetch('http://localhost:3001/product/addtofavorite', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -127,28 +126,46 @@ export default function Product({product}) {
             },
             body: JSON.stringify(data),
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            setProductVar(data.product)
+       
+        if(response.ok){
+            let result = await response.json();
+            setProductVar(result.product);
+
+            if(result.product.product_id){
 
             setNotificationState({
                 isTrue: true,
                 text: 'Product added to favorite successfully !',
-                color: 'info'
+                color: 'success'
             })
 
             setTimeout(() => {
                 setNotificationState({
                     isTrue: false,
                     text: 'Product added to favorite successfully !',
-                    color: 'info'
+                    color: 'success'
                 })
-            }
-            , 3000);
+            }, 3000);
         }
-        )
 
+        else{
+            setNotificationState({
+                isTrue: true,
+                text: 'Product removed from favorite successfully !',
+                color: 'danger'
+            })
+
+            setTimeout(() => {
+                setNotificationState({
+                    isTrue: false,
+                    text: 'Product removed from favorite successfully !',
+                    color: 'danger'
+                })
+            }, 3000);
+        }
+    }
+
+      
 
     }
 

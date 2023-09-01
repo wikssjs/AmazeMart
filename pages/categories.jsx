@@ -41,7 +41,7 @@ export default function Categories() {
             <h1 className="mb-5 text-center">Categories</h1>
             <div className="row ">
                 {categories.map((category) => (
-                    <div data-category={category.category} className={`${styles.category} shadow-sm col-md-4 mb-4 animate__fadeIn animate__animated`} key={category.id} onClick={showProducts}>
+                    <div data-category={category.category} className={`${styles.category} col-sm-12 mt-2 col-lg-3`} key={category.id} onClick={showProducts}>
                         <LoadingBar color='#f11946' progress={100} height={3} />
                         <div href={`/categories/${category}`} className={`${styles.category_card} text-decoration-none`}>
                             <div className="card border-0 shadow-sm">
@@ -56,7 +56,7 @@ export default function Categories() {
                 <div className={`${styles.products} row gap-5`}>
                     <div className='align-self-center'>
 
-                        <h1 className='text-center b w-25 m-auto'>{category}</h1>
+                        <h1 className='text-center  m- mt-3'>{category}</h1>
                     </div>
                     {
                         products.length === 0 ? <p className='text-center '>No Products for this Category</p>

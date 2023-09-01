@@ -187,7 +187,6 @@ export default function AddProductPage() {
                         </div>
                         
                         <button type="submit" className={styles.btn_submit} disabled={loading}>Add Product</button>
-                        {message && <div className="alert alert-success mt-3">{message}</div>}
                         {error && <div className="alert alert-danger mt-3">{error}</div>}
                     </form>
                 </div>
