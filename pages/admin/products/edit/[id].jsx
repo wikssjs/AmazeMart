@@ -44,7 +44,7 @@ export default function ProductEditPage() {
                 )
         }
         setImage(product.image);
-    }, [id]);
+    }, [id,product.image]);
 
     useEffect(() => {
         fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/categories')

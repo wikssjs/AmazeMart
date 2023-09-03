@@ -167,13 +167,13 @@ export default function Product() {
 
                         >
                             <div>
-                                <img src={`/img/${product.image}`} />
+                                <img src={`/img/${product.image}`} alt={product.image}/>
                             </div>
                             <div>
-                                <img src={`/img/${product.image}`} />
+                                <img src={`/img/${product.image}`} alt={product.image}/>
                             </div>
                             <div>
-                                <img src={`/img/${product.image}`} />
+                                <img src={`/img/${product.image}`}alt={product.image} />
                             </div>
                         </Carousel>                    </div>
                     <div className={`${styles.rigthSide} my-4 col-xl-5  d-flex flex-column justify-content-between align-items-center`}>

@@ -43,7 +43,7 @@ export default function Home() {
             <button>Buy Now</button>
           </div>
           <div className=''>
-            <Image src={headphone} width={375} className='d-none d-md-flex' />
+            <Image src={headphone} width={375} className='d-none d-md-flex' alt='headphone image'/>
 
           </div>
         </div>

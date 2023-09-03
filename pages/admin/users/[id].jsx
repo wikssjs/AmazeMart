@@ -20,7 +20,7 @@ export default function UserDetail() {
                 setOrders(data.orders);
             })
             .catch(err => console.log(err));
-    }, []);
+    }, [id]);
 
 
     // // Dummy data

@@ -290,9 +290,9 @@ export default function Cart() {
 
                         </form>
                         <div className="d-flex gap-3 align-items-center">
-                            <Image src={visa} width={50} />
-                            <Image src={paypal} width={70} />
-                            <Image src={mastercard} width={50} />
+                            <Image src={visa} width={50} alt='visa'/>
+                            <Image src={paypal} width={70} alt='paypal'/>
+                            <Image src={mastercard} width={50} alt='mastercard'/>
                         </div>
                         {
                             selectedOption === "Paypal" ?
