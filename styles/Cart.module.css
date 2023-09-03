@@ -3,7 +3,7 @@
   font-weight: 600;
 }
 .cartLeft {
-  height: 165vh;
+  height: max-content;
 }
 .itemWrapper {
 background-color: antiquewhite;
