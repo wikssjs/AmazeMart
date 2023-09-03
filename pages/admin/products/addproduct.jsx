@@ -19,7 +19,7 @@ export default function AddProductPage() {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:3001/categories')
+        fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/categories')
             .then(response => response.json())
             .then(json => {
                 if (json.categories) {
@@ -83,7 +83,7 @@ export default function AddProductPage() {
         formData.append('category', category);
         formData.append('quantity', quantity);
     
-        fetch('http://localhost:3001/addProduct', {
+        fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/addProduct', {
             method: 'POST',
             body: formData,
             headers: {

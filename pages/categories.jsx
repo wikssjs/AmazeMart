@@ -12,7 +12,7 @@ export default function Categories() {
     const [products, setProducts] = useState([]);
     useEffect(() => {
         showProducts({ currentTarget: { dataset: { category: 'Electronics' } } })
-        fetch(`http://localhost:3001/categories`)
+        fetch(`https://amazemart-1f4e9d6a5f39.herokuapp.com/categories`)
             .then(res => res.json())
             .then(data => {
                 setCategories(data.categories)
@@ -23,7 +23,7 @@ export default function Categories() {
         const category = e.currentTarget.dataset.category
         setCategory(category)
         //get products by category
-        fetch(`http://localhost:3001/products?category=${encodeURIComponent(category)}`)
+        fetch(`https://amazemart-1f4e9d6a5f39.herokuapp.com/products?category=${encodeURIComponent(category)}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data.products)

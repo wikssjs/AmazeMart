@@ -26,7 +26,7 @@ export default function Header() {
     const user = decode(token);
     setUser(user);
 
-    fetch('http://localhost:3001/cartCount',
+    fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/cartCount',
     {
       headers: {
         'Content-Type': 'application/json',

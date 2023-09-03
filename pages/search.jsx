@@ -10,7 +10,7 @@ export default function SearchResults(){
     const {search} = router.query;
 
     useEffect(() => {
-        fetch(`http://localhost:3001/searchproducts?search=${search}`)
+        fetch(`https://amazemart-1f4e9d6a5f39.herokuapp.com/searchproducts?search=${search}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data.products)

@@ -19,7 +19,7 @@ function Profile() {
     
 
     useEffect(() => {
-    fetch('http://localhost:3001/profile', {
+    fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/profile', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ function Profile() {
         setEditMode(!editMode);
         if (editMode) {
             // Save changes
-            fetch('http://localhost:3001/profile', {
+            fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/profile', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ function Profile() {
         }
 
 
-        fetch('http://localhost:3001/profile/password', {
+        fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/profile/password', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

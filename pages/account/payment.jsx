@@ -17,7 +17,7 @@ function PaymentPage() {
   
 
     useEffect(() => {
-    fetch('http://localhost:3001/user/getCreditCard', {
+    fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/user/getCreditCard', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ function PaymentPage() {
 }, []);
 
   const handleDeleteCard = () => {
-    fetch('http://localhost:3001/user/deleteCreditCard', {
+    fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/user/deleteCreditCard', {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ function PaymentPage() {
     };
 
     // Process the form submission
-    fetch('http://localhost:3001/user/updateCreditCard', {
+    fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/user/updateCreditCard', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ function PaymentPage() {
         };
 
         // Process the form submission
-        fetch('http://localhost:3001/user/addCreditCard', {
+        fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/user/addCreditCard', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

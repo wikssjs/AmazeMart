@@ -12,7 +12,7 @@ export default function ProductsPage() {
 
 
     useEffect(() => {
-        fetch('http://localhost:3001/', {
+        fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/', {
             headers: {
                 'Content-type': 'application/json',
                 'user-id': decode(localStorage.getItem('token')).id
@@ -34,7 +34,7 @@ export default function ProductsPage() {
         const newProducts = products.filter(product => product.id !== id);
         setProducts(newProducts);
         // TODO: Also, make a call to your backend to delete the product from the database
-        fetch('http://localhost:3001/product', {
+        fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/product', {
             method: 'DELETE',
             headers: {
                 'Content-type': 'application/json',

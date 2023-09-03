@@ -12,7 +12,7 @@ export default function UserDetail() {
     const [cart, setCart] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:3001/getUsers/${id}`)
+        fetch(`https://amazemart-1f4e9d6a5f39.herokuapp.com/getUsers/${id}`)
             .then(res => res.json())
             .then(data => {
                 setUser(data.user);

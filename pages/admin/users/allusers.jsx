@@ -7,7 +7,7 @@ export default function UsersPage() {
    
 
     useEffect(() => {
-       fetch('http://localhost:3001/getUsers')
+       fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/getUsers')
             .then(res => res.json())
             .then(data => {
                 setUsers(data.users);

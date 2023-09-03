@@ -18,7 +18,7 @@ export default function Login() {
 		let data ;
 
 		const res = await fetch(
-			'http://localhost:3001/user/register',
+			'https://amazemart-1f4e9d6a5f39.herokuapp.com/user/register',
 			{
 				body: JSON.stringify({
 					fullname: event.target.txt.value,
@@ -73,7 +73,7 @@ export default function Login() {
 		event.preventDefault()
 
 		const res = await fetch(
-			'http://localhost:3001/user/login',
+			'https://amazemart-1f4e9d6a5f39.herokuapp.com/user/login',
 			{
 				body: JSON.stringify({
 					email: event.target.email.value,

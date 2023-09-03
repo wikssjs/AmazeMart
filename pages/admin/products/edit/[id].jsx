@@ -28,7 +28,7 @@ export default function ProductEditPage() {
     useEffect(() => {
         if (id) {
 
-            fetch(`http://localhost:3001/product/${id}`, {
+            fetch(`https://amazemart-1f4e9d6a5f39.herokuapp.com/product/${id}`, {
                 headers: {
                     'Content-type': 'application/json',
                     'user-id': decode(localStorage.getItem('token')).id
@@ -47,7 +47,7 @@ export default function ProductEditPage() {
     }, [id]);
 
     useEffect(() => {
-        fetch('http://localhost:3001/categories')
+        fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/categories')
             .then(response => response.json())
             .then(json => {
                 if (json.categories) {
@@ -116,7 +116,7 @@ export default function ProductEditPage() {
 
 
         // TODO: Make an API call to update the product details
-        fetch(`http://localhost:3001/product/${id}`, {
+        fetch(`https://amazemart-1f4e9d6a5f39.herokuapp.com/product/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json',

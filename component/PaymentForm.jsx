@@ -100,7 +100,7 @@ export default function PaymentForm({ cartHasnoItems, products }) {
 
         // Process the form submission
         setLoading(true);
-        fetch('http://localhost:3001/user/checkout', {
+        fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/user/checkout', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

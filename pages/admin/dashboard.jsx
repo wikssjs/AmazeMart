@@ -8,7 +8,7 @@ export default function DashboardPage() {
     const [monthlyData , setMonthlyData] = useState([])
     const [recentOrder , setRecentOrder] = useState([])
     useEffect(() => {
-        fetch('http://localhost:3001/admin/dashboard')
+        fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/admin/dashboard')
             .then(response => response.json())
             .then(json => {
                 console.log(json.recentOrders)

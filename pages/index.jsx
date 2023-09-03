@@ -23,7 +23,7 @@ export default function Home() {
     }
   }, [router])
   useEffect(() => {
-    fetch('http://localhost:3001/', {
+    fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/', {
       headers: {
         'user-id': decode(localStorage.getItem('token')) && decode(localStorage.getItem('token')).id
       }

@@ -37,7 +37,7 @@ export default function Product() {
 
 
     useEffect(() => {
-        fetch(`http://localhost:3001/product/${index}`)
+        fetch(`https://amazemart-1f4e9d6a5f39.herokuapp.com/product/${index}`)
             .then(res => res.json())
             .then(data => {
                 setProduct(data.product);
@@ -46,7 +46,7 @@ export default function Product() {
     }, [index])
 
     useEffect(() => {
-        fetch('http://localhost:3001/cart',
+        fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/cart',
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ export default function Product() {
             quantity: quantity,
         };
 
-        let reponse = await fetch('http://localhost:3001/addtocart', {
+        let reponse = await fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/addtocart', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

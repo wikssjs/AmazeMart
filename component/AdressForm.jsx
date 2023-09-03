@@ -19,7 +19,7 @@ export default function AdressForm() {
     }
 
     useEffect(() => {
-        fetch('http://localhost:3001/address', {
+        fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/address', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export default function AdressForm() {
         setAddressSaved(true); // Set address as saved after form submission
         console.log(address);
         // Add server-side logic here
-        fetch('http://localhost:3001/address', {
+        fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/address', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ export default function AdressForm() {
         userId : decode(localStorage.getItem('token')).id
        }
 
-        fetch('http://localhost:3001/address', {
+        fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/address', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

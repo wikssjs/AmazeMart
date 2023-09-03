@@ -21,7 +21,7 @@ function OrdersPage() {
 
   const fetchOrders = async () => {
     try {
-      const response = await fetch('http://localhost:3001/user/orders', {
+      const response = await fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/user/orders', {
         headers: {
           'Content-type': 'application/json',
         }

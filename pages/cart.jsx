@@ -37,7 +37,7 @@ export default function Cart() {
 
 
     useEffect(() => {
-        fetch(`http://localhost:3001/cart?token=${localStorage.getItem('token')}`, {
+        fetch(`https://amazemart-1f4e9d6a5f39.herokuapp.com/cart?token=${localStorage.getItem('token')}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ export default function Cart() {
 
     const increment = (event) => {
         const productId = Number(event.currentTarget.dataset.id);
-        fetch(`http://localhost:3001/cart/increment`, {
+        fetch(`https://amazemart-1f4e9d6a5f39.herokuapp.com/cart/increment`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ export default function Cart() {
     const decrement = async (event) => {
 
         const productId = Number(event.currentTarget.dataset.id);
-        let response = await fetch(`http://localhost:3001/cart/decrement`, {
+        let response = await fetch(`https://amazemart-1f4e9d6a5f39.herokuapp.com/cart/decrement`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ export default function Cart() {
 
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:3001/cart/${id}`, {
+        fetch(`https://amazemart-1f4e9d6a5f39.herokuapp.com/cart/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ export default function Cart() {
             return;
         }
 
-        const response = await fetch(`http://localhost:3001/cart/coupon`, {
+        const response = await fetch(`https://amazemart-1f4e9d6a5f39.herokuapp.com/cart/coupon`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

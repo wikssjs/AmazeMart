@@ -13,7 +13,7 @@ export default function ReviewsPage() {
     const { id, name } = router.query;
 
     useEffect(() => {
-        fetch(`http://localhost:3001/getProductReviews?id=${id}`, {
+        fetch(`https://amazemart-1f4e9d6a5f39.herokuapp.com/getProductReviews?id=${id}`, {
             headers: {
                 'Content-type': 'application/json',
                 'user-id': decode(localStorage.getItem('token')).id
@@ -45,7 +45,7 @@ export default function ReviewsPage() {
         setReviews(newReviews);
         setEditingReview(null);
 
-        fetch('http://localhost:3001/admin/updateReview', {
+        fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/admin/updateReview', {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json',
@@ -73,7 +73,7 @@ export default function ReviewsPage() {
         const newReviews = reviews.filter(review => review.id !== id);
         setReviews(newReviews);
 
-        fetch ('http://localhost:3001/admin/deleteReview', {
+        fetch ('https://amazemart-1f4e9d6a5f39.herokuapp.com/admin/deleteReview', {
             method: 'DELETE',
             headers: {
                 'Content-type': 'application/json',

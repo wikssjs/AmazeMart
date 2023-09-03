@@ -16,7 +16,7 @@ function Favorites() {
     useEffect(() => {
         //get all the products from the database
 
-        fetch('http://localhost:3001/user/favorites',
+        fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/user/favorites',
             {
                 headers: {  
                     'user-id': decode(localStorage.getItem('token')) && decode(localStorage.getItem('token')).id
@@ -35,7 +35,7 @@ function Favorites() {
     useEffect(() => {
         //get all the products from the database
 
-        fetch('http://localhost:3001/cart',
+        fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/cart',
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ function Favorites() {
             productId: id
         }
 
-        fetch('http://localhost:3001/user/favorites',
+        fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/user/favorites',
             {
                 method: 'DELETE',
                 headers: {
@@ -113,7 +113,7 @@ function Favorites() {
             quantity: 1,
         };
 
-        let response = await fetch('http://localhost:3001/addtocart', {
+        let response = await fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/addtocart', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
