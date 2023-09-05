@@ -43,8 +43,7 @@ export default function ProductEditPage() {
                 }
                 )
         }
-        setImage(product.image);
-    }, [id,product.image]);
+    }, [id]);
 
     useEffect(() => {
         fetch('https://amazemart-1f4e9d6a5f39.herokuapp.com/categories')
@@ -79,7 +78,7 @@ export default function ProductEditPage() {
             setErrors('Image is required.');
             return;
         }
-        alert(image.type)
+        alert(image)
         // Check if the selected file is an image
         if (!['image/jpeg', 'image/png', 'image/gif', 'image/avif'].includes(image.type)) {
             setErrors('Please select a valid image format (jpg, png, gif,avif).');
