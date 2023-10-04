@@ -176,18 +176,19 @@ export default function Cart() {
     };
 
     return (
-        <main className='h-100 mx-auto'>
+        <main className='container-fluid my-5'>
             <LoadingBar color='#f11946' progress={100} height={3} />
-            <div className={`${styles.cartWrapper} row mx-3 justify-content-center gap-0`}>
+            <div className={`${styles.cartWrapper} row mx-3 justify-content-center `}>
                 <div className={`${styles.cartLeft}  col-lg-7 col-sm-12 justify-content-between mt-2`}>
 
                     <div className={styles.products}>
+                        <h1 className='p-2'>Review item And Shipping</h1>
                         {
                             products && products.length == 0 ? <div className='m-auto text-center d-flex justify-content-between align-items-center'>No Items in your cart</div> :
                                 products.map((product) => (
                                     <div key={product.id} className={`${styles.itemWrapper} mt-2 mx-2 d-flex mb-5 align-self-start  flex-column align-items-baseline -lg rounded-4`}>
+                                                <h2>{product.name}</h2>
                                         <div className='d-flex justify-content-between w-100'>
-                                            <h1 className='p-2'>Review item And Shipping</h1>
                                             <button className={`${styles.deleteButton} btn btn-danger m-2`} onClick={() => handleDelete(product.productId)}>
                                                 Delete <i className='bi bi-trash'></i>
                                             </button>
@@ -196,7 +197,6 @@ export default function Cart() {
 
                                             <div className={`${styles.cart_name} d-flex align-items-center`}>
                                                 <Image src={"/img/"+product.image} width={150} height={100} alt='image-product' />
-                                                <h2>{product.name}</h2>
 
                                             </div>
                                             <div>
