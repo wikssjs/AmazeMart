@@ -1,9 +1,8 @@
 :root {
-  --background: #1a1a2e;
-  --color: #ffffff;
-  --primary-color: #0f3460;
-  --primary: #007BFF;
-
+  --background: #f4f6f8;
+  --color: #333333;
+  --primary-color: #4a90e2;
+  --primary: #8360c3;
 }
 
 html{
@@ -15,10 +14,11 @@ html{
 
 /* Use modern sans-serif font */
 body {
-  font-family: 'Poppins', sans-serif;
   font-weight: 400;
   height: 100%;
   width: 100%;
+  background-color: var(--background);
+  color: var(--color);
 }
 
 main{

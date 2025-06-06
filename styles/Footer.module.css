@@ -3,8 +3,8 @@
     width: 100%;
     background-color: white; /* Light grey background */
     padding: 2rem 1.25rem;
-    border-top: 2px solid #093729; 
-    box-shadow: 0px 0px 10px #093729;
+    border-top: 2px solid var(--primary-color);
+    box-shadow: 0px 0px 10px var(--primary-color);
 
 }
 
@@ -23,7 +23,7 @@
     font-size: 1.4em;
     margin-bottom: 1rem;
     font-weight: 400;
-    color: #093729;
+    color: var(--primary-color);
 }
 
 .footerSection ul {
@@ -47,7 +47,7 @@
 
 .footerBottom {
     text-align: center;
-    background-color: #093729;
+    background-color: var(--primary-color);
     color: white;
     padding: 1rem 0;
     font-size: 0.9em;
